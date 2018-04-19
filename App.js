@@ -1,20 +1,19 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- * @flow
- */
-
 import React, {Component} from 'react';
 import {
-    Platform,
     StyleSheet,
     Text,
     View,
     TextInput,
     ImageBackground,
     Image,
-    Button
+    TouchableHighlight
 } from 'react-native';
+
+const appStyles = {
+    primaryColor: '#518ffb',
+    primaryTextColor: '#000',
+    dimmedTextColor: '#D0D0D0'
+};
 
 type Props = {};
 export default class App extends Component<Props> {
@@ -25,7 +24,7 @@ export default class App extends Component<Props> {
                 source={require('./images/bg.png')}>
 
                 <View>
-                    <View style={styles.headerContainer}>
+                    <View style={styles.logoAndAppName}>
                         <Image
                             style={styles.logo}
                             source={require('./images/logo.png')}/>
@@ -36,8 +35,8 @@ export default class App extends Component<Props> {
 
                     <View style={styles.formContainer}>
                         <View style={styles.formHeader}>
-                            <Text>
-                                Login
+                            <Text style={styles.formHeaderTitle}>
+                                LOGIN
                             </Text>
                         </View>
                         <View style={styles.formContent}>
@@ -48,26 +47,49 @@ export default class App extends Component<Props> {
                                 <TextInput
                                     style={styles.input}
                                     placeholder={'E-mail'}
+                                    placeholderTextColor={appStyles.dimmedTextColor}
                                     underlineColorAndroid="transparent">
                                 </TextInput>
                             </View>
 
-                            <TextInput
-                                placeholder={'Password'}>
-                            </TextInput>
+                            <View style={styles.formInput}>
+                                <Image
+                                    source={require('./images/lock.png')}
+                                    style={styles.inputIcon}/>
+                                <TextInput
+                                    style={styles.input}
+                                    placeholder={'Password'}
+                                    placeholderTextColor={appStyles.dimmedTextColor}
+                                    underlineColorAndroid="transparent">
+                                </TextInput>
+                            </View>
 
-                            <Text>
+                            <Text style={[styles.hyperLink, styles.forgotPasswordText]}>
                                 Forgot passwords?
                             </Text>
+                        </View>
 
-                            <Button
-                                title={'Login'}>
-                            </Button>
+                        <View style={styles.formAction}>
+                            <TouchableHighlight
+                                style={[styles.loginButton]}>
+                                <ImageBackground
+                                    style={{
+                                        flex: 1,
+                                        flexDirection: 'column',
+                                        justifyContent: 'center',
+                                        alignItems: 'center'
+                                    }}
+                                    source={require('./images/btn_login.png')}>
+                                    <Text style={{color: '#FFF', fontSize: 12}}>
+                                        LOGIN
+                                    </Text>
+                                </ImageBackground>
+                            </TouchableHighlight>
                         </View>
                     </View>
 
                     <View>
-                        <Text>
+                        <Text style={[styles.hyperLink, styles.registerText]}>
                             Register a new account!
                         </Text>
                     </View>
@@ -79,16 +101,23 @@ export default class App extends Component<Props> {
 }
 
 const styles = StyleSheet.create({
+    /* COMMON */
     container: {
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center'
     },
-    headerContainer: {
+    hyperLink: {
+        color: appStyles.primaryColor,
+        textDecorationLine: 'underline'
+    },
+
+    /* Logo and App name */
+    logoAndAppName: {
         flexWrap: 'wrap',
         flexDirection: 'row',
         justifyContent: 'center',
-        marginBottom: 16
+        marginBottom: 24
     },
     logo: {
         width: 48,
@@ -100,12 +129,14 @@ const styles = StyleSheet.create({
         lineHeight: 48,
         fontFamily: 'Montserrat-Bold',
         marginLeft: 16,
-        color: '#7D7DF0'
+        color: appStyles.primaryColor
     },
+
+    /* FORM LAYOUT */
     formContainer: {
         flexWrap: 'wrap',
         alignItems: 'stretch',
-        flexDirection:'column',
+        flexDirection: 'column',
         width: 250,
         backgroundColor: '#FFFFFF',
         borderRadius: 8,
@@ -119,35 +150,84 @@ const styles = StyleSheet.create({
         shadowOpacity: 0.5,
     },
     formHeader: {
-        height: 36,
-        padding: 8,
+        flexWrap: 'wrap',
+        flexDirection: 'row',
+        justifyContent: 'flex-start',
+        alignItems: 'center',
+        height: 48,
+        padding: 16,
         borderBottomWidth: 2,
-        borderBottomColor: '#FF5050'
+        borderBottomColor: appStyles.primaryColor
+    },
+    formHeaderTitle: {
+        fontSize: 14,
+        fontWeight: 'bold'
     },
     formContent: {
         flexWrap: 'wrap',
         flexDirection: 'column',
         justifyContent: 'center',
-        padding: 16
+        padding: 24,
+        paddingBottom: 8
     },
+    formAction: {
+        flexWrap: 'wrap',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'stretch',
+        paddingLeft: 24,
+        paddingRight: 24,
+        paddingBottom: 16
+    },
+
+    /* Form input */
     formInput: {
+        height: 24,
         flexWrap: 'wrap',
         flexDirection: 'row',
         justifyContent: 'flex-start',
         alignItems: 'center',
         alignSelf: 'stretch',
-        padding: 8,
+        paddingLeft: 16,
+        paddingRight: 16,
+        marginTop: 8,
+        marginBottom: 8,
         borderBottomWidth: 1,
-        borderBottomColor: '#D0D0D0'
+        borderBottomColor: appStyles.dimmedTextColor,
     },
     inputIcon: {
         flexWrap: 'wrap',
         width: 16,
-        height: 14,
-        marginTop: 8,
-        marginBottom: 2
+        height: 16,
+        resizeMode: 'center'
     },
     input: {
-        flex: 1
+        flex: 1,
+        marginLeft: 8,
+        fontSize: 10,
+        height: 36
     },
+
+    forgotPasswordText: {
+        fontSize: 10,
+        textAlign: 'center',
+        marginTop: 8,
+        marginBottom: 8
+    },
+    loginButton: {
+        height: 24,
+        flexWrap: 'wrap',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'stretch',
+        borderRadius: 4,
+        overflow: 'hidden'
+    },
+    registerText: {
+        fontSize: 12,
+        fontWeight: 'bold',
+        textAlign: 'center',
+        marginTop: 16,
+        marginBottom: 16
+    }
 });
