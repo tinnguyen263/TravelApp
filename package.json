@@ -3,8 +3,9 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "start": "node node_modules/react-native/local-cli/cli.js start",
-    "test": "jest"
+    "android": "react-native run-android",
+    "ios": "react-native run-ios",
+    "link": "react-native link"
   },
   "rnpm": {
     "assets": [
@@ -13,7 +14,8 @@
   },
   "dependencies": {
     "react": "16.3.1",
-    "react-native": "0.55.3"
+    "react-native": "0.55.3",
+    "react-navigation": "^1.5.11"
   },
   "devDependencies": {
     "babel-jest": "22.4.3",
