@@ -5,9 +5,9 @@ import {
     View,
     TextInput,
     ImageBackground,
-    Image,
-    TouchableHighlight
+    Image
 } from 'react-native';
+import MyFancyButton from "../components/buttons/my-fancy-button";
 
 const appStyles = {
     primaryColor: '#518ffb',
@@ -19,6 +19,10 @@ export default class LoginPage extends React.Component {
 
     static navigationOptions = {
         header: null
+    };
+
+    _login = () => {
+        this.props.navigation.navigate('Home');
     };
 
     render() {
@@ -74,21 +78,10 @@ export default class LoginPage extends React.Component {
                         </View>
 
                         <View style={styles.formAction}>
-                            <TouchableHighlight
-                                style={[styles.loginButton]}>
-                                <ImageBackground
-                                    style={{
-                                        flex: 1,
-                                        flexDirection: 'column',
-                                        justifyContent: 'center',
-                                        alignItems: 'center'
-                                    }}
-                                    source={require('../../images/btn_login.png')}>
-                                    <Text style={{color: '#FFF', fontSize: 12}}>
-                                        LOGIN
-                                    </Text>
-                                </ImageBackground>
-                            </TouchableHighlight>
+                            <MyFancyButton
+                                buttonText={'LOGIN'}
+                                onPress={this._login}>
+                            </MyFancyButton>
                         </View>
                     </View>
 
@@ -217,15 +210,6 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         marginTop: 8,
         marginBottom: 8
-    },
-    loginButton: {
-        height: 24,
-        flexWrap: 'wrap',
-        flexDirection: 'column',
-        justifyContent: 'center',
-        alignItems: 'stretch',
-        borderRadius: 4,
-        overflow: 'hidden'
     },
     registerText: {
         fontSize: 12,
