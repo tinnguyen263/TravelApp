@@ -3,11 +3,12 @@ import {
     StyleSheet,
     Text,
     View,
-    TextInput,
     ImageBackground,
-    Image,
-    TouchableHighlight
+    Image
 } from 'react-native';
+import {PrimaryButton} from "../components/buttons";
+import {TextInput} from "../components/text-input";
+import {Card} from "../components/card";
 
 const appStyles = {
     primaryColor: '#518ffb',
@@ -19,6 +20,10 @@ export default class LoginPage extends React.Component {
 
     static navigationOptions = {
         header: null
+    };
+
+    _login = () => {
+        this.props.navigation.navigate('Home');
     };
 
     render() {
@@ -37,60 +42,30 @@ export default class LoginPage extends React.Component {
                         </Text>
                     </View>
 
-                    <View style={styles.formContainer}>
-                        <View style={styles.formHeader}>
-                            <Text style={styles.formHeaderTitle}>
-                                LOGIN
-                            </Text>
-                        </View>
-                        <View style={styles.formContent}>
-                            <View style={styles.formInput}>
-                                <Image
-                                    source={require('../../images/email.png')}
-                                    style={styles.inputIcon}/>
+                    <Card
+                        title={'LOGIN'}
+                        cardContent={
+                            <View>
                                 <TextInput
-                                    style={styles.input}
-                                    placeholder={'E-mail'}
-                                    placeholderTextColor={appStyles.dimmedTextColor}
-                                    underlineColorAndroid="transparent">
-                                </TextInput>
-                            </View>
+                                    icon={require('../../images/email.png')}
+                                    placeholder={'E-mail'}/>
 
-                            <View style={styles.formInput}>
-                                <Image
-                                    source={require('../../images/lock.png')}
-                                    style={styles.inputIcon}/>
                                 <TextInput
-                                    style={styles.input}
-                                    placeholder={'Password'}
-                                    placeholderTextColor={appStyles.dimmedTextColor}
-                                    underlineColorAndroid="transparent">
-                                </TextInput>
+                                    icon={require('../../images/lock.png')}
+                                    placeholder={'Password'}/>
+
+                                <Text style={[styles.hyperLink, styles.forgotPasswordText]}>
+                                    Forgot passwords?
+                                </Text>
                             </View>
-
-                            <Text style={[styles.hyperLink, styles.forgotPasswordText]}>
-                                Forgot passwords?
-                            </Text>
-                        </View>
-
-                        <View style={styles.formAction}>
-                            <TouchableHighlight
-                                style={[styles.loginButton]}>
-                                <ImageBackground
-                                    style={{
-                                        flex: 1,
-                                        flexDirection: 'column',
-                                        justifyContent: 'center',
-                                        alignItems: 'center'
-                                    }}
-                                    source={require('../../images/btn_login.png')}>
-                                    <Text style={{color: '#FFF', fontSize: 12}}>
-                                        LOGIN
-                                    </Text>
-                                </ImageBackground>
-                            </TouchableHighlight>
-                        </View>
-                    </View>
+                        }
+                        cardAction={
+                            <PrimaryButton
+                                buttonText={'LOGIN'}
+                                onPress={this._login}>
+                            </PrimaryButton>
+                        }
+                    />
 
                     <View>
                         <Text style={[styles.hyperLink, styles.registerText]}>
@@ -136,96 +111,11 @@ const styles = StyleSheet.create({
         color: appStyles.primaryColor
     },
 
-    /* FORM LAYOUT */
-    formContainer: {
-        flexWrap: 'wrap',
-        alignItems: 'stretch',
-        flexDirection: 'column',
-        width: 250,
-        backgroundColor: '#FFFFFF',
-        borderRadius: 8,
-        elevation: 3,
-        shadowColor: '#000000',
-        shadowOffset: {
-            width: 12,
-            height: 12
-        },
-        shadowRadius: 5,
-        shadowOpacity: 0.5,
-    },
-    formHeader: {
-        flexWrap: 'wrap',
-        flexDirection: 'row',
-        justifyContent: 'flex-start',
-        alignItems: 'center',
-        height: 48,
-        padding: 16,
-        borderBottomWidth: 2,
-        borderBottomColor: appStyles.primaryColor
-    },
-    formHeaderTitle: {
-        fontSize: 14,
-        fontWeight: 'bold'
-    },
-    formContent: {
-        flexWrap: 'wrap',
-        flexDirection: 'column',
-        justifyContent: 'center',
-        padding: 24,
-        paddingBottom: 8
-    },
-    formAction: {
-        flexWrap: 'wrap',
-        flexDirection: 'column',
-        justifyContent: 'center',
-        alignItems: 'stretch',
-        paddingLeft: 24,
-        paddingRight: 24,
-        paddingBottom: 16
-    },
-
-    /* Form input */
-    formInput: {
-        height: 24,
-        flexWrap: 'wrap',
-        flexDirection: 'row',
-        justifyContent: 'flex-start',
-        alignItems: 'center',
-        alignSelf: 'stretch',
-        paddingLeft: 16,
-        paddingRight: 16,
-        marginTop: 8,
-        marginBottom: 8,
-        borderBottomWidth: 1,
-        borderBottomColor: appStyles.dimmedTextColor,
-    },
-    inputIcon: {
-        flexWrap: 'wrap',
-        width: 16,
-        height: 16,
-        resizeMode: 'center'
-    },
-    input: {
-        flex: 1,
-        marginLeft: 8,
-        fontSize: 10,
-        height: 36
-    },
-
     forgotPasswordText: {
         fontSize: 10,
         textAlign: 'center',
         marginTop: 8,
         marginBottom: 8
-    },
-    loginButton: {
-        height: 24,
-        flexWrap: 'wrap',
-        flexDirection: 'column',
-        justifyContent: 'center',
-        alignItems: 'stretch',
-        borderRadius: 4,
-        overflow: 'hidden'
     },
     registerText: {
         fontSize: 12,
