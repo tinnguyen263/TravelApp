@@ -46,30 +46,32 @@ export default class LoginPage extends React.Component {
                         </Text>
                     </View>
 
-                    <Card
-                        title={'LOGIN'}
-                        cardContent={
-                            <View>
-                                <TextInput
-                                    icon={require('../../images/email.png')}
-                                    placeholder={'E-mail'}/>
+                    <View style={styles.form}>
+                        <Card
+                            title={'LOGIN'}
+                            cardContent={
+                                <View style={{marginTop: 8}}>
+                                    <TextInput
+                                        icon={require('../../images/email.png')}
+                                        placeholder={'E-mail'}/>
 
-                                <TextInput
-                                    icon={require('../../images/lock.png')}
-                                    placeholder={'Password'}/>
+                                    <TextInput
+                                        icon={require('../../images/lock.png')}
+                                        placeholder={'Password'}/>
 
-                                <Text style={[styles.hyperLink, styles.forgotPasswordText]}>
-                                    Forgot passwords?
-                                </Text>
-                            </View>
-                        }
-                        cardAction={
-                            <PrimaryButton
-                                buttonText={'LOGIN'}
-                                onPress={this._login}>
-                            </PrimaryButton>
-                        }
-                    />
+                                    <Text style={[styles.hyperLink, styles.forgotPasswordText]}>
+                                        Forgot passwords?
+                                    </Text>
+                                </View>
+                            }
+                            cardAction={
+                                <PrimaryButton
+                                    buttonText={'LOGIN'}
+                                    onPress={this._login}>
+                                </PrimaryButton>
+                            }
+                        />
+                    </View>
 
                     <View>
                         <Text
@@ -115,6 +117,10 @@ const styles = StyleSheet.create({
         fontFamily: 'Montserrat-Bold',
         marginLeft: 16,
         color: appStyles.primaryColor
+    },
+
+    form: {
+        width: 250
     },
 
     forgotPasswordText: {

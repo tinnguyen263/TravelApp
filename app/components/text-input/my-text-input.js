@@ -7,11 +7,8 @@ class MyTextInput extends React.Component {
         let styles = StyleSheet.create({
             inputContainer: {
                 height: 24,
-                flexWrap: 'wrap',
                 flexDirection: 'row',
-                justifyContent: 'flex-start',
                 alignItems: 'center',
-                alignSelf: 'stretch',
                 paddingLeft: 16,
                 paddingRight: 16,
                 marginTop: 8,
@@ -20,7 +17,6 @@ class MyTextInput extends React.Component {
                 borderBottomColor: '#D0D0D0',
             },
             inputIcon: {
-                flexWrap: 'wrap',
                 width: 16,
                 height: 16,
                 resizeMode: 'center'
