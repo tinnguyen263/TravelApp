@@ -1,8 +1,8 @@
 import React from "react";
 import PropTypes from 'prop-types';
-import {StyleSheet, Image, TextInput, View} from "react-native";
+import {StyleSheet, Image, TextInput as ReactTextInput, View} from "react-native";
 
-class MyTextInput extends React.Component {
+class TextInput extends React.Component {
     render() {
         let styles = StyleSheet.create({
             inputContainer: {
@@ -35,20 +35,20 @@ class MyTextInput extends React.Component {
                     source={this.props.icon}
                     style={styles.inputIcon}/>
                 }
-                <TextInput
+                <ReactTextInput
                     style={styles.input}
                     placeholder={this.props.placeholder}
                     placeholderTextColor={'#D0D0D0'}
                     underlineColorAndroid="transparent">
-                </TextInput>
+                </ReactTextInput>
             </View>
         )
     }
 }
 
-MyTextInput.propTypes = {
+TextInput.propTypes = {
     placeholder: PropTypes.string.isRequired,
     icon: PropTypes.any
 };
 
-export default MyTextInput;
+export default TextInput;

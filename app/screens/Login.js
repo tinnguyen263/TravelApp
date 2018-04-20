@@ -7,8 +7,8 @@ import {
     Image
 } from 'react-native';
 import {PrimaryButton} from "../components/buttons";
-import {TextInput} from "../components/text-input";
-import {Card} from "../components/card";
+import {TextInput} from "../components/inputs";
+import {Card} from "../components/layouts";
 
 const appStyles = {
     primaryColor: '#518ffb',

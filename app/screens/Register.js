@@ -2,10 +2,10 @@ import React, {Component} from 'react';
 import {
     StyleSheet,
     View,
-    Text, ImageBackground
+    ImageBackground
 } from 'react-native';
-import {Card} from "../components/card";
-import {TextInput} from "../components/text-input";
+import {Card} from "../components/layouts";
+import {TextInput} from "../components/inputs";
 import {PrimaryButton} from "../components/buttons";
 
 type Props = {};
