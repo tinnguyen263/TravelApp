@@ -26,6 +26,10 @@ export default class LoginPage extends React.Component {
         this.props.navigation.navigate('Home');
     };
 
+    _register = () => {
+        this.props.navigation.navigate('Register');
+    };
+
     render() {
         return (
             <ImageBackground
@@ -68,7 +72,9 @@ export default class LoginPage extends React.Component {
                     />
 
                     <View>
-                        <Text style={[styles.hyperLink, styles.registerText]}>
+                        <Text
+                            style={[styles.hyperLink, styles.registerText]}
+                            onPress={this._register}>
                             Register a new account!
                         </Text>
                     </View>
