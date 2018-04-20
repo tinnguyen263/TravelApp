@@ -3,13 +3,7 @@ import PropTypes from 'prop-types';
 import {StyleSheet, ImageBackground, Text, TouchableHighlight} from "react-native";
 
 
-class MyFancyButton extends React.Component {
-
-    constructor(props) {
-        super();
-        this.props = props;
-    }
-
+class PrimaryButton extends React.Component {
     render() {
         return (
             <TouchableHighlight
@@ -35,10 +29,7 @@ class MyFancyButton extends React.Component {
 const styles = StyleSheet.create({
     fancyButton: {
         height: 24,
-        flexWrap: 'wrap',
-        flexDirection: 'column',
         justifyContent: 'center',
-        alignItems: 'stretch',
         borderRadius: 4,
         overflow: 'hidden'
     },
@@ -48,9 +39,9 @@ const styles = StyleSheet.create({
     }
 });
 
-MyFancyButton.propTypes = {
+PrimaryButton.propTypes = {
     onPress: PropTypes.func,
     text: PropTypes.string
 };
 
-export default MyFancyButton;
+export default PrimaryButton;

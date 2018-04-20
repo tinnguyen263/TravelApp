@@ -7,7 +7,7 @@ import {
     ImageBackground,
     Image
 } from 'react-native';
-import MyFancyButton from "../components/buttons/my-fancy-button";
+import {PrimaryButton} from "../components/buttons";
 
 const appStyles = {
     primaryColor: '#518ffb',
@@ -78,10 +78,10 @@ export default class LoginPage extends React.Component {
                         </View>
 
                         <View style={styles.formAction}>
-                            <MyFancyButton
+                            <PrimaryButton
                                 buttonText={'LOGIN'}
                                 onPress={this._login}>
-                            </MyFancyButton>
+                            </PrimaryButton>
                         </View>
                     </View>
 

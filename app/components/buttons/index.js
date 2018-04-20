@@ -1,3 +1,3 @@
-import MyFancyButton from './my-fancy-button';
+import PrimaryButton from './primary-button';
 
-export {MyFancyButton};
+export {PrimaryButton};
