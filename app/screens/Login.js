@@ -3,11 +3,11 @@ import {
     StyleSheet,
     Text,
     View,
-    TextInput,
     ImageBackground,
     Image
 } from 'react-native';
 import {PrimaryButton} from "../components/buttons";
+import {TextInput} from "../components/text-input/";
 
 const appStyles = {
     primaryColor: '#518ffb',
@@ -48,29 +48,13 @@ export default class LoginPage extends React.Component {
                             </Text>
                         </View>
                         <View style={styles.formContent}>
-                            <View style={styles.formInput}>
-                                <Image
-                                    source={require('../../images/email.png')}
-                                    style={styles.inputIcon}/>
-                                <TextInput
-                                    style={styles.input}
-                                    placeholder={'E-mail'}
-                                    placeholderTextColor={appStyles.dimmedTextColor}
-                                    underlineColorAndroid="transparent">
-                                </TextInput>
-                            </View>
+                            <TextInput
+                                icon={require('../../images/email.png')}
+                                placeholder={'E-mail'}/>
 
-                            <View style={styles.formInput}>
-                                <Image
-                                    source={require('../../images/lock.png')}
-                                    style={styles.inputIcon}/>
-                                <TextInput
-                                    style={styles.input}
-                                    placeholder={'Password'}
-                                    placeholderTextColor={appStyles.dimmedTextColor}
-                                    underlineColorAndroid="transparent">
-                                </TextInput>
-                            </View>
+                            <TextInput
+                                icon={require('../../images/lock.png')}
+                                placeholder={'Password'}/>
 
                             <Text style={[styles.hyperLink, styles.forgotPasswordText]}>
                                 Forgot passwords?
@@ -178,7 +162,7 @@ const styles = StyleSheet.create({
     },
 
     /* Form input */
-    formInput: {
+    inputContainer: {
         height: 24,
         flexWrap: 'wrap',
         flexDirection: 'row',
