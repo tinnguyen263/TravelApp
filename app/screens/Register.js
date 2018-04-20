@@ -5,7 +5,7 @@ import {
     ImageBackground
 } from 'react-native';
 import {Card} from "../components/layouts";
-import {TextInput} from "../components/inputs";
+import {TextInput, ConfirmInput} from "../components/inputs";
 import {PrimaryButton} from "../components/buttons";
 
 type Props = {};
@@ -63,6 +63,10 @@ export default class RegisterPage extends Component<Props> {
                                 <TextInput
                                     icon={require('../../images/lock.png')}
                                     placeholder={'Confirmaaa password'}/>
+
+                                <View style={{paddingLeft: 16}}>
+                                    <ConfirmInput text={'Accept terms and conditions'}/>
+                                </View>
                             </View>
                         }
                         cardAction={
