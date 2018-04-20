@@ -2,7 +2,8 @@ import React, {Component} from 'react';
 import {
     StyleSheet,
     View,
-    ImageBackground
+    ImageBackground,
+    Text
 } from 'react-native';
 import {Card} from "../components/layouts";
 import {TextInput, ConfirmInput} from "../components/inputs";
@@ -19,11 +20,28 @@ export default class RegisterPage extends Component<Props> {
         this.props.navigation.navigate('Home');
     };
 
+    _navigateBack = () => this.props.navigation.goBack();
+
     render() {
         return (
             <ImageBackground
                 style={styles.container}
                 source={require('../../images/bg.png')}>
+
+                <Text
+                    style={[
+                        styles.hyperLink,
+                        {
+                            position: 'absolute',
+                            top: 16,
+                            right: 16,
+                            fontWeight: 'bold',
+                            color: '#518ffb'
+                        }
+                    ]}
+                    onPress={this._navigateBack}>
+                    Back
+                </Text>
 
                 <View style={styles.form}>
                     <Card
