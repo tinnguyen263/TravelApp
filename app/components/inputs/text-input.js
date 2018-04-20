@@ -6,9 +6,10 @@ class TextInput extends React.Component {
     render() {
         let styles = StyleSheet.create({
             inputContainer: {
-                height: 24,
                 flexDirection: 'row',
+                justifyContent: 'flex-start',
                 alignItems: 'center',
+                alignSelf: 'stretch',
                 paddingLeft: 16,
                 paddingRight: 16,
                 marginTop: 8,
@@ -25,8 +26,9 @@ class TextInput extends React.Component {
                 flex: 1,
                 marginLeft: this.props.icon ? 8 : 0,
                 fontSize: 10,
-                height: 36
-            },
+                height: 24,
+                padding: 0
+            }
         });
         return (
             <View style={styles.inputContainer}>

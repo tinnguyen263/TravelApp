@@ -16,6 +16,7 @@ export default class RegisterPage extends Component<Props> {
     };
 
     _register = () => {
+        this.props.navigation.navigate('Home');
     };
 
     render() {
