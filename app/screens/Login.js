@@ -7,7 +7,8 @@ import {
     Image
 } from 'react-native';
 import {PrimaryButton} from "../components/buttons";
-import {TextInput} from "../components/text-input/";
+import {TextInput} from "../components/text-input";
+import {Card} from "../components/card";
 
 const appStyles = {
     primaryColor: '#518ffb',
@@ -41,33 +42,30 @@ export default class LoginPage extends React.Component {
                         </Text>
                     </View>
 
-                    <View style={styles.formContainer}>
-                        <View style={styles.formHeader}>
-                            <Text style={styles.formHeaderTitle}>
-                                LOGIN
-                            </Text>
-                        </View>
-                        <View style={styles.formContent}>
-                            <TextInput
-                                icon={require('../../images/email.png')}
-                                placeholder={'E-mail'}/>
+                    <Card
+                        title={'LOGIN'}
+                        cardContent={
+                            <View>
+                                <TextInput
+                                    icon={require('../../images/email.png')}
+                                    placeholder={'E-mail'}/>
 
-                            <TextInput
-                                icon={require('../../images/lock.png')}
-                                placeholder={'Password'}/>
+                                <TextInput
+                                    icon={require('../../images/lock.png')}
+                                    placeholder={'Password'}/>
 
-                            <Text style={[styles.hyperLink, styles.forgotPasswordText]}>
-                                Forgot passwords?
-                            </Text>
-                        </View>
-
-                        <View style={styles.formAction}>
+                                <Text style={[styles.hyperLink, styles.forgotPasswordText]}>
+                                    Forgot passwords?
+                                </Text>
+                            </View>
+                        }
+                        cardAction={
                             <PrimaryButton
                                 buttonText={'LOGIN'}
                                 onPress={this._login}>
                             </PrimaryButton>
-                        </View>
-                    </View>
+                        }
+                    />
 
                     <View>
                         <Text style={[styles.hyperLink, styles.registerText]}>
@@ -111,82 +109,6 @@ const styles = StyleSheet.create({
         fontFamily: 'Montserrat-Bold',
         marginLeft: 16,
         color: appStyles.primaryColor
-    },
-
-    /* FORM LAYOUT */
-    formContainer: {
-        flexWrap: 'wrap',
-        alignItems: 'stretch',
-        flexDirection: 'column',
-        width: 250,
-        backgroundColor: '#FFFFFF',
-        borderRadius: 8,
-        elevation: 3,
-        shadowColor: '#000000',
-        shadowOffset: {
-            width: 12,
-            height: 12
-        },
-        shadowRadius: 5,
-        shadowOpacity: 0.5,
-    },
-    formHeader: {
-        flexWrap: 'wrap',
-        flexDirection: 'row',
-        justifyContent: 'flex-start',
-        alignItems: 'center',
-        height: 48,
-        padding: 16,
-        borderBottomWidth: 2,
-        borderBottomColor: appStyles.primaryColor
-    },
-    formHeaderTitle: {
-        fontSize: 14,
-        fontWeight: 'bold'
-    },
-    formContent: {
-        flexWrap: 'wrap',
-        flexDirection: 'column',
-        justifyContent: 'center',
-        padding: 24,
-        paddingBottom: 8
-    },
-    formAction: {
-        flexWrap: 'wrap',
-        flexDirection: 'column',
-        justifyContent: 'center',
-        alignItems: 'stretch',
-        paddingLeft: 24,
-        paddingRight: 24,
-        paddingBottom: 16
-    },
-
-    /* Form input */
-    inputContainer: {
-        height: 24,
-        flexWrap: 'wrap',
-        flexDirection: 'row',
-        justifyContent: 'flex-start',
-        alignItems: 'center',
-        alignSelf: 'stretch',
-        paddingLeft: 16,
-        paddingRight: 16,
-        marginTop: 8,
-        marginBottom: 8,
-        borderBottomWidth: 1,
-        borderBottomColor: appStyles.dimmedTextColor,
-    },
-    inputIcon: {
-        flexWrap: 'wrap',
-        width: 16,
-        height: 16,
-        resizeMode: 'center'
-    },
-    input: {
-        flex: 1,
-        marginLeft: 8,
-        fontSize: 10,
-        height: 36
     },
 
     forgotPasswordText: {
