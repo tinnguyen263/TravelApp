@@ -22,12 +22,49 @@ export default class LoginPage extends React.Component {
         header: null
     };
 
+    constructor(props) {
+        super(props);
+        this.state = {
+            email: '',
+            password: ''
+        }
+    }
+
+    _authenticate = (email, password) => {
+        return fetch(`http://travel-app.speedup.world/api/login?email=${email}&password=${password}`, {
+            method: 'POST'
+        });
+    };
+
     _login = () => {
-        this.props.navigation.navigate('Home');
+        this._authenticate(this.state.email, this.state.password).then(response => response.json())
+            .then(responseJson => {
+                if (responseJson.status) {
+                    this._navigateHome();
+                }
+                else {
+                    alert(responseJson.message);
+                }
+            })
+            .catch(error => console.error(error));
     };
 
     _register = () => {
         this.props.navigation.navigate('Register');
+    };
+
+    _navigateHome = () => {
+        this.props.navigation.navigate('Home');
+    };
+
+    _setMockData = () => {
+        console.warn('setting data');
+        this.setState(() => {
+            return {
+                email: 'chung.pv0795@gmail.com',
+                password: '123456'
+            }
+        });
     };
 
     render() {
@@ -53,13 +90,18 @@ export default class LoginPage extends React.Component {
                                 <View style={{marginTop: 8}}>
                                     <TextInput
                                         icon={require('../../images/email.png')}
-                                        placeholder={'E-mail'}/>
+                                        placeholder={'E-mail'}
+                                        value={this.state.email}
+                                        onChange={email => this.setState({email})}/>
 
                                     <TextInput
                                         icon={require('../../images/lock.png')}
-                                        placeholder={'Password'}/>
+                                        placeholder={'Password'}
+                                        value={this.state.password}
+                                        onChange={password => this.setState({password})}/>
 
-                                    <Text style={[styles.hyperLink, styles.forgotPasswordText]}>
+                                    <Text style={[styles.hyperLink, styles.forgotPasswordText]}
+                                          onPress={this._setMockData}>
                                         Forgot passwords?
                                     </Text>
                                 </View>

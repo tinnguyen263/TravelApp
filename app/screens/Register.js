@@ -81,10 +81,13 @@ export default class RegisterPage extends Component<Props> {
 
                                 <TextInput
                                     icon={require('../../images/lock.png')}
-                                    placeholder={'Confirmaaa password'}/>
+                                    placeholder={'Confirm password'}/>
 
-                                <View style={{paddingLeft: 16}}>
-                                    <ConfirmInput text={'Accept terms and conditions'}/>
+                                <View style={styles.confirm}>
+                                    <ConfirmInput
+                                        name={'confirm'}
+                                        text={'Accept terms and conditions'}
+                                        onChange={(name, checked) => alert(`${name} field: ${checked}`)}/>
                                 </View>
                             </View>
                         }
@@ -117,5 +120,10 @@ const styles = StyleSheet.create({
     },
     column: {
         flex: 1
+    },
+    confirm: {
+        paddingLeft: 4,
+        paddingRight: 4,
+        margin: 8
     }
 });
