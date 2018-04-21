@@ -41,8 +41,9 @@ class TextInput extends React.Component {
                     style={styles.input}
                     placeholder={this.props.placeholder}
                     placeholderTextColor={'#D0D0D0'}
-                    underlineColorAndroid="transparent">
-                </ReactTextInput>
+                    underlineColorAndroid="transparent"
+                    value={this.props.value}
+                    onChangeText={this.props.onChange}/>
             </View>
         )
     }
@@ -50,7 +51,9 @@ class TextInput extends React.Component {
 
 TextInput.propTypes = {
     placeholder: PropTypes.string.isRequired,
-    icon: PropTypes.any
+    icon: PropTypes.any,
+    onChange: PropTypes.func,
+    value: PropTypes.string
 };
 
 export default TextInput;
