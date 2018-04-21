@@ -6,6 +6,7 @@ import {
     TouchableHighlight,
     ImageBackground
 } from 'react-native';
+import {BottomNav} from "../components/bottom-nav";
 
 export default class HomePage extends Component {
 
@@ -41,6 +42,37 @@ export default class HomePage extends Component {
                         source={require('./../../images/home_search.png')}/>
                 </TouchableHighlight>
 
+                <BottomNav
+                    items={[
+                        {
+                            title: 'Home',
+                            icon: require('./../../images/home_bottom.png'),
+                            iconActive: require('./../../images/home_bottom_hl.png'),
+                        },
+                        {
+                            title: 'Activities',
+                            icon: require('./../../images/activity_bottom.png'),
+                            iconActive: require('./../../images/activity_bottom_hl.png'),
+                        },
+                        {
+                            title: 'Add Listings',
+                            icon: require('./../../images/add_bottom.png'),
+                            iconActive: require('./../../images/add_bottom_hl.png'),
+                        },
+                        {
+                            title: 'Notifications',
+                            icon: require('./../../images/notify_bottom.png'),
+                            iconActive: require('./../../images/notify_bottom_hl.png'),
+                        },
+                        {
+                            title: 'Others',
+                            icon: require('./../../images/more_bottom.png'),
+                            iconActive: require('./../../images/more_bottom_hl.png'),
+                        },
+
+                    ]}
+                    onSelect={() => {
+                    }}/>
             </View>
         );
     }
