@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from 'prop-types';
-import {StyleSheet} from "react-native";
-import CheckBox from 'react-native-check-box'
+import {StyleSheet, Text, View} from "react-native";
+import Checkbox from 'react-native-custom-checkbox'
 
 class ConfirmInput extends React.Component {
 
@@ -13,34 +13,50 @@ class ConfirmInput extends React.Component {
     }
 
     _toggleCheckbox = () => {
-        this.state.checked = !this.state.checked;
-        if (this.props.onchange) {
-            this.props.onchange();
-        }
+        this.setState({
+            checked: !this.state.checked
+        });
     };
 
     render() {
         return (
-            <CheckBox
-                rightTextStyle={{
-                    flex: 1,
-                    marginLeft: 8,
-                    fontSize: 10,
-                    color: '#518ffb'
-                }}
-                onClick={this._toggleCheckbox}
-                isChecked={this.state.checked}
-                rightText={this.props.text}
-            />
+            <View style={styles.container}>
+                <Checkbox
+                    style={{
+                        borderWidth: 1,
+                        borderColor: '#A0A0A0',
+                        borderRadius: 2
+                    }}
+                    size={12}
+                    name={this.props.name}
+                    checked={this.state.checked}
+                    onChange={this.props.onChange}/>
+                <Text style={styles.text}>
+                    {this.props.text}
+                </Text>
+            </View>
         );
     }
 }
 
-ConfirmInput.propTypes = {
-    text: PropTypes.string.isRequired,
-    onchange: PropTypes.func
-};
+const styles = StyleSheet.create({
+    container: {
+        flexDirection: 'row',
+        justifyContent: 'flex-start',
+        alignItems: 'center',
+        alignSelf: 'stretch'
+    },
+    text: {
+        flex: 1,
+        marginLeft: 8,
+        fontSize: 10
+    }
+});
 
-// TODO: style check box
+ConfirmInput.propTypes = {
+    name: PropTypes.string,
+    text: PropTypes.string.isRequired,
+    onChange: PropTypes.func
+};
 
 export default ConfirmInput;
