@@ -68,7 +68,7 @@ class ListItem extends React.Component {
                 <ImageBackground
                     style={styles.priceContainer}
                     source={require('./../../../images/flight_rectangle.png')}>
-                    <Text style={styles.price}>$99.00</Text>
+                    <Text style={styles.price}>{`$ ${this.props.price.toFixed(2)}`}</Text>
                 </ImageBackground>
             </View>
         );
@@ -95,8 +95,9 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'flex-start',
         padding: 8,
-        borderRadius: 4,
-        elevation: 2
+        borderRadius: 2,
+        elevation: 2,
+        backgroundColor: '#FFF'
     },
     leftContainer: {
         width: 56
@@ -159,12 +160,13 @@ const styles = StyleSheet.create({
 });
 
 ListItem.propTypes = {
-    image: PropTypes.object.isRequired,
+    image: PropTypes.any.isRequired,
     airportName: PropTypes.string.isRequired,
     loungeName: PropTypes.string.isRequired,
     time: PropTypes.string.isRequired,
     guest: PropTypes.number.isRequired,
-    isAvailable: PropTypes.bool.isRequired
+    isAvailable: PropTypes.bool.isRequired,
+    price: PropTypes.number.isRequired
 };
 
 export default ListItem;

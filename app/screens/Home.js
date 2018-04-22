@@ -4,7 +4,7 @@ import {
     View,
     Text,
     TouchableHighlight,
-    ImageBackground
+    ImageBackground, ScrollView
 } from 'react-native';
 import {BottomNav} from "../components/bottom-nav";
 import ListItem from "../components/list/list-item";
@@ -14,6 +14,132 @@ export default class HomePage extends Component {
     static navigationOptions = {
         header: null
     };
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            bottomNavItems: [
+                {
+                    title: 'Home',
+                    icon: require('./../../images/home_bottom.png'),
+                    iconActive: require('./../../images/home_bottom_hl.png'),
+                },
+                {
+                    title: 'Activities',
+                    icon: require('./../../images/activity_bottom.png'),
+                    iconActive: require('./../../images/activity_bottom_hl.png'),
+                },
+                {
+                    title: 'Add Listings',
+                    icon: require('./../../images/add_bottom.png'),
+                    iconActive: require('./../../images/add_bottom_hl.png'),
+                },
+                {
+                    title: 'Notifications',
+                    icon: require('./../../images/notify_bottom.png'),
+                    iconActive: require('./../../images/notify_bottom_hl.png'),
+                },
+                {
+                    title: 'Others',
+                    icon: require('./../../images/more_bottom.png'),
+                    iconActive: require('./../../images/more_bottom_hl.png'),
+                }
+            ],
+            flights: [
+                {
+                    cityName: 'Ho Chi Minh City, Viet Nam',
+                    flights: [
+                        {
+                            airportName: 'TAN SON NHAT AIRPORT',
+                            image: require('./../../images/flight_temp.png'),
+                            loungeName: 'SILVERKRIS',
+                            time: '02/17/2018 • 06:10 - 13:10',
+                            guest: 15,
+                            isAvailable: true,
+                            price: 99
+                        }
+                    ]
+                },
+                {
+                    cityName: 'East Berlin, United States',
+                    flights: [
+                        {
+                            airportName: 'AIRPORT NAME',
+                            image: require('./../../images/flight_temp.png'),
+                            loungeName: 'LOUNGE NAME',
+                            time: '02/17/2018 • 06:10 - 13:10',
+                            guest: 15,
+                            isAvailable: true,
+                            price: 99
+                        },
+                        {
+                            airportName: 'AIRPORT NAME',
+                            image: require('./../../images/flight_temp.png'),
+                            loungeName: 'LOUNGE NAME',
+                            time: '02/17/2018 • 06:10 - 13:10',
+                            guest: 15,
+                            isAvailable: true,
+                            price: 99
+                        },
+                        {
+                            airportName: 'AIRPORT NAME',
+                            image: require('./../../images/flight_temp.png'),
+                            loungeName: 'LOUNGE NAME',
+                            time: '02/17/2018 • 06:10 - 13:10',
+                            guest: 15,
+                            isAvailable: true,
+                            price: 99
+                        },
+                        {
+                            airportName: 'AIRPORT NAME',
+                            image: require('./../../images/flight_temp.png'),
+                            loungeName: 'LOUNGE NAME',
+                            time: '02/17/2018 • 06:10 - 13:10',
+                            guest: 15,
+                            isAvailable: true,
+                            price: 99
+                        },
+                        {
+                            airportName: 'AIRPORT NAME',
+                            image: require('./../../images/flight_temp.png'),
+                            loungeName: 'LOUNGE NAME',
+                            time: '02/17/2018 • 06:10 - 13:10',
+                            guest: 15,
+                            isAvailable: true,
+                            price: 99
+                        },
+                        {
+                            airportName: 'AIRPORT NAME',
+                            image: require('./../../images/flight_temp.png'),
+                            loungeName: 'LOUNGE NAME',
+                            time: '02/17/2018 • 06:10 - 13:10',
+                            guest: 15,
+                            isAvailable: true,
+                            price: 99
+                        },
+                        {
+                            airportName: 'AIRPORT NAME',
+                            image: require('./../../images/flight_temp.png'),
+                            loungeName: 'LOUNGE NAME',
+                            time: '02/17/2018 • 06:10 - 13:10',
+                            guest: 15,
+                            isAvailable: true,
+                            price: 99
+                        },
+                        {
+                            airportName: 'AIRPORT NAME',
+                            image: require('./../../images/flight_temp.png'),
+                            loungeName: 'LOUNGE NAME',
+                            time: '02/17/2018 • 06:10 - 13:10',
+                            guest: 15,
+                            isAvailable: true,
+                            price: 99
+                        }
+                    ]
+                }
+            ]
+        }
+    }
 
     render() {
         return (
@@ -25,31 +151,31 @@ export default class HomePage extends Component {
                     </Text>
                 </View>
 
-                <View style={styles.pageContent}>
-
-                    <ListItem
-                        image={require('./../../images/flight_temp.png')}
-                        airportName={'TAN SON NHAT AIRPORT'}
-                        loungeName={'SILVERKRIS'}
-                        time={'02/17/2018 • 06:10 - 13:10'}
-                        guest={15}
-                        isAvailable={true}/>
-                    <ListItem
-                        image={require('./../../images/flight_temp.png')}
-                        airportName={'TAN SON NHAT AIRPORT'}
-                        loungeName={'SILVERKRIS'}
-                        time={'02/17/2018 • 06:10 - 13:10'}
-                        guest={15}
-                        isAvailable={true}/>
-                    <ListItem
-                        image={require('./../../images/flight_temp.png')}
-                        airportName={'TAN SON NHAT AIRPORT'}
-                        loungeName={'SILVERKRIS'}
-                        time={'02/17/2018 • 06:10 - 13:10'}
-                        guest={15}
-                        isAvailable={true}/>
-
-                </View>
+                <ScrollView style={styles.pageContent}>
+                    <Text style={styles.listHeader}>New listings near you</Text>
+                    {this.state.flights.map(city => (
+                        <View>
+                            <Text style={styles.subListHeader}>
+                                {city.cityName}
+                            </Text>
+                            <View style={styles.subList}>
+                                {city.flights.map((flight, index) => (
+                                    <View style={styles.listItem}>
+                                        <ListItem
+                                            key={index}
+                                            image={flight.image}
+                                            airportName={flight.airportName}
+                                            loungeName={flight.loungeName}
+                                            time={flight.time}
+                                            guest={flight.guest}
+                                            isAvailable={flight.isAvailable}
+                                            price={flight.price}/>
+                                    </View>
+                                ))}
+                            </View>
+                        </View>
+                    ))}
+                </ScrollView>
 
                 <TouchableHighlight
                     style={[styles.searchButton]}>
@@ -64,34 +190,7 @@ export default class HomePage extends Component {
                 </TouchableHighlight>
 
                 <BottomNav
-                    items={[
-                        {
-                            title: 'Home',
-                            icon: require('./../../images/home_bottom.png'),
-                            iconActive: require('./../../images/home_bottom_hl.png'),
-                        },
-                        {
-                            title: 'Activities',
-                            icon: require('./../../images/activity_bottom.png'),
-                            iconActive: require('./../../images/activity_bottom_hl.png'),
-                        },
-                        {
-                            title: 'Add Listings',
-                            icon: require('./../../images/add_bottom.png'),
-                            iconActive: require('./../../images/add_bottom_hl.png'),
-                        },
-                        {
-                            title: 'Notifications',
-                            icon: require('./../../images/notify_bottom.png'),
-                            iconActive: require('./../../images/notify_bottom_hl.png'),
-                        },
-                        {
-                            title: 'Others',
-                            icon: require('./../../images/more_bottom.png'),
-                            iconActive: require('./../../images/more_bottom_hl.png'),
-                        },
-
-                    ]}
+                    items={this.state.bottomNavItems}
                     onSelect={() => {
                     }}/>
             </View>
@@ -99,37 +198,59 @@ export default class HomePage extends Component {
     }
 }
 
-const styles = StyleSheet.create({
-    /* COMMON */
-    container: {
-        flex: 1,
-        flexDirection: 'column',
-        justifyContent: 'flex-start',
-        alignItems: 'stretch'
-    },
-    pageHeader: {
-        backgroundColor: '#006093',
-        height: 48,
-        flexDirection: 'row',
-        justifyContent: 'flex-start',
-        alignItems: 'center',
-        paddingLeft: 16,
-        paddingRight: 16
-    },
-    title: {
-        fontWeight: 'bold',
-        fontSize: 18,
-        color: '#FFF'
-    },
-    pageContent: {
-        flex: 1,
-        backgroundColor: '#F8F8F8'
-    },
-    searchButton: {
-        width: 48,
-        height: 48,
-        position: 'absolute',
-        right: 16,
-        top: 24
-    }
-});
+const
+    styles = StyleSheet.create({
+        /* COMMON */
+        container: {
+            flex: 1,
+            flexDirection: 'column',
+            justifyContent: 'flex-start',
+            alignItems: 'stretch'
+        },
+        pageHeader: {
+            backgroundColor: '#006093',
+            height: 48,
+            flexDirection: 'row',
+            justifyContent: 'flex-start',
+            alignItems: 'center',
+            paddingLeft: 16,
+            paddingRight: 16
+        },
+        title: {
+            fontWeight: 'bold',
+            fontSize: 20,
+            color: '#FFF'
+        },
+        pageContent: {
+            flex: 1,
+            backgroundColor: '#F8F8F8',
+            padding: 8
+        },
+        searchButton: {
+            width: 48,
+            height: 48,
+            position: 'absolute',
+            right: 16,
+            top: 24
+        },
+
+        listHeader: {
+            fontSize: 16,
+            fontWeight: 'bold',
+            marginTop: 8,
+            marginBottom: 8
+        },
+        subList: {
+            marginTop: 4,
+            marginBottom: 4
+        },
+        subListHeader: {
+            fontSize: 14,
+            color: '#999'
+        },
+        listItem: {
+            marginTop: 2,
+            marginBottom: 2
+        }
+
+    });
