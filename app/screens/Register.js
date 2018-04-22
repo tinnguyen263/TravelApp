@@ -87,7 +87,7 @@ export default class RegisterPage extends Component<Props> {
                                     <ConfirmInput
                                         name={'confirm'}
                                         text={'Accept terms and conditions'}
-                                        onChange={(name, checked) => alert(`${name} field: ${checked}`)}/>
+                                        onChange={(name, checked) => {}}/>
                                 </View>
                             </View>
                         }

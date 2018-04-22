@@ -58,7 +58,6 @@ export default class LoginPage extends React.Component {
     };
 
     _setMockData = () => {
-        console.warn('setting data');
         this.setState(() => {
             return {
                 email: 'chung.pv0795@gmail.com',

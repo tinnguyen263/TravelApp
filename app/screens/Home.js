@@ -153,16 +153,16 @@ export default class HomePage extends Component {
 
                 <ScrollView style={styles.pageContent}>
                     <Text style={styles.listHeader}>New listings near you</Text>
-                    {this.state.flights.map(city => (
+                    {this.state.flights.map((city, cityIndex) => (
                         <View>
                             <Text style={styles.subListHeader}>
                                 {city.cityName}
                             </Text>
                             <View style={styles.subList}>
-                                {city.flights.map((flight, index) => (
+                                {city.flights.map((flight, flightIndex) => (
                                     <View style={styles.listItem}>
                                         <ListItem
-                                            key={index}
+                                            key={flightIndex*cityIndex}
                                             image={flight.image}
                                             airportName={flight.airportName}
                                             loungeName={flight.loungeName}
