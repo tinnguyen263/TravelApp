@@ -7,6 +7,7 @@ import {
     ImageBackground
 } from 'react-native';
 import {BottomNav} from "../components/bottom-nav";
+import ListItem from "../components/list/list-item";
 
 export default class HomePage extends Component {
 
@@ -25,9 +26,29 @@ export default class HomePage extends Component {
                 </View>
 
                 <View style={styles.pageContent}>
-                    <Text>
-                        content
-                    </Text>
+
+                    <ListItem
+                        image={require('./../../images/flight_temp.png')}
+                        airportName={'TAN SON NHAT AIRPORT'}
+                        loungeName={'SILVERKRIS'}
+                        time={'02/17/2018 • 06:10 - 13:10'}
+                        guest={15}
+                        isAvailable={true}/>
+                    <ListItem
+                        image={require('./../../images/flight_temp.png')}
+                        airportName={'TAN SON NHAT AIRPORT'}
+                        loungeName={'SILVERKRIS'}
+                        time={'02/17/2018 • 06:10 - 13:10'}
+                        guest={15}
+                        isAvailable={true}/>
+                    <ListItem
+                        image={require('./../../images/flight_temp.png')}
+                        airportName={'TAN SON NHAT AIRPORT'}
+                        loungeName={'SILVERKRIS'}
+                        time={'02/17/2018 • 06:10 - 13:10'}
+                        guest={15}
+                        isAvailable={true}/>
+
                 </View>
 
                 <TouchableHighlight
