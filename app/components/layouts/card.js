@@ -28,10 +28,8 @@ class Card extends React.Component {
 
 const styles = StyleSheet.create({
     formContainer: {
-        flexWrap: 'wrap',
         alignItems: 'stretch',
         flexDirection: 'column',
-        width: 250,
         backgroundColor: '#FFFFFF',
         borderRadius: 8,
         elevation: 3,
@@ -44,7 +42,6 @@ const styles = StyleSheet.create({
         shadowOpacity: 0.5,
     },
     formHeader: {
-        flexWrap: 'wrap',
         flexDirection: 'row',
         justifyContent: 'flex-start',
         alignItems: 'center',
@@ -58,14 +55,13 @@ const styles = StyleSheet.create({
         fontWeight: 'bold'
     },
     formContent: {
-        flexWrap: 'wrap',
         flexDirection: 'column',
         justifyContent: 'center',
         padding: 24,
+        paddingTop: 8,
         paddingBottom: 8
     },
     formAction: {
-        flexWrap: 'wrap',
         flexDirection: 'column',
         justifyContent: 'center',
         alignItems: 'stretch',

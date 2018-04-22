@@ -28,7 +28,7 @@ class PrimaryButton extends React.Component {
 
 const styles = StyleSheet.create({
     fancyButton: {
-        height: 24,
+        height: 36,
         justifyContent: 'center',
         borderRadius: 4,
         overflow: 'hidden'

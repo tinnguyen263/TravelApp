@@ -7,8 +7,8 @@ import {
     Image
 } from 'react-native';
 import {PrimaryButton} from "../components/buttons";
-import {TextInput} from "../components/text-input";
-import {Card} from "../components/card";
+import {TextInput} from "../components/inputs";
+import {Card} from "../components/layouts";
 
 const appStyles = {
     primaryColor: '#518ffb',
@@ -22,8 +22,48 @@ export default class LoginPage extends React.Component {
         header: null
     };
 
+    constructor(props) {
+        super(props);
+        this.state = {
+            email: '',
+            password: ''
+        }
+    }
+
+    _authenticate = (email, password) => {
+        return fetch(`http://travel-app.speedup.world/api/login?email=${email}&password=${password}`, {
+            method: 'POST'
+        });
+    };
+
     _login = () => {
+        this._authenticate(this.state.email, this.state.password).then(response => response.json())
+            .then(responseJson => {
+                if (responseJson.status) {
+                    this._navigateHome();
+                }
+                else {
+                    alert(responseJson.message);
+                }
+            })
+            .catch(error => console.error(error));
+    };
+
+    _register = () => {
+        this.props.navigation.navigate('Register');
+    };
+
+    _navigateHome = () => {
         this.props.navigation.navigate('Home');
+    };
+
+    _setMockData = () => {
+        this.setState(() => {
+            return {
+                email: 'chung.pv0795@gmail.com',
+                password: '123456'
+            }
+        });
     };
 
     render() {
@@ -42,33 +82,42 @@ export default class LoginPage extends React.Component {
                         </Text>
                     </View>
 
-                    <Card
-                        title={'LOGIN'}
-                        cardContent={
-                            <View>
-                                <TextInput
-                                    icon={require('../../images/email.png')}
-                                    placeholder={'E-mail'}/>
+                    <View style={styles.form}>
+                        <Card
+                            title={'LOGIN'}
+                            cardContent={
+                                <View style={{marginTop: 8}}>
+                                    <TextInput
+                                        icon={require('../../images/email.png')}
+                                        placeholder={'E-mail'}
+                                        value={this.state.email}
+                                        onChange={email => this.setState({email})}/>
 
-                                <TextInput
-                                    icon={require('../../images/lock.png')}
-                                    placeholder={'Password'}/>
+                                    <TextInput
+                                        icon={require('../../images/lock.png')}
+                                        placeholder={'Password'}
+                                        value={this.state.password}
+                                        onChange={password => this.setState({password})}/>
 
-                                <Text style={[styles.hyperLink, styles.forgotPasswordText]}>
-                                    Forgot passwords?
-                                </Text>
-                            </View>
-                        }
-                        cardAction={
-                            <PrimaryButton
-                                buttonText={'LOGIN'}
-                                onPress={this._login}>
-                            </PrimaryButton>
-                        }
-                    />
+                                    <Text style={[styles.hyperLink, styles.forgotPasswordText]}
+                                          onPress={this._setMockData}>
+                                        Forgot passwords?
+                                    </Text>
+                                </View>
+                            }
+                            cardAction={
+                                <PrimaryButton
+                                    buttonText={'LOGIN'}
+                                    onPress={this._login}>
+                                </PrimaryButton>
+                            }
+                        />
+                    </View>
 
                     <View>
-                        <Text style={[styles.hyperLink, styles.registerText]}>
+                        <Text
+                            style={[styles.hyperLink, styles.registerText]}
+                            onPress={this._register}>
                             Register a new account!
                         </Text>
                     </View>
@@ -109,6 +158,10 @@ const styles = StyleSheet.create({
         fontFamily: 'Montserrat-Bold',
         marginLeft: 16,
         color: appStyles.primaryColor
+    },
+
+    form: {
+        width: 250
     },
 
     forgotPasswordText: {

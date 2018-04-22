@@ -1,13 +1,11 @@
 import React from "react";
 import PropTypes from 'prop-types';
-import {StyleSheet, Image, TextInput, View} from "react-native";
+import {StyleSheet, Image, TextInput as ReactTextInput, View} from "react-native";
 
-class MyTextInput extends React.Component {
+class TextInput extends React.Component {
     render() {
         let styles = StyleSheet.create({
             inputContainer: {
-                height: 24,
-                flexWrap: 'wrap',
                 flexDirection: 'row',
                 justifyContent: 'flex-start',
                 alignItems: 'center',
@@ -20,7 +18,6 @@ class MyTextInput extends React.Component {
                 borderBottomColor: '#D0D0D0',
             },
             inputIcon: {
-                flexWrap: 'wrap',
                 width: 16,
                 height: 16,
                 resizeMode: 'center'
@@ -29,8 +26,9 @@ class MyTextInput extends React.Component {
                 flex: 1,
                 marginLeft: this.props.icon ? 8 : 0,
                 fontSize: 10,
-                height: 36
-            },
+                height: 24,
+                padding: 0
+            }
         });
         return (
             <View style={styles.inputContainer}>
@@ -39,20 +37,23 @@ class MyTextInput extends React.Component {
                     source={this.props.icon}
                     style={styles.inputIcon}/>
                 }
-                <TextInput
+                <ReactTextInput
                     style={styles.input}
                     placeholder={this.props.placeholder}
                     placeholderTextColor={'#D0D0D0'}
-                    underlineColorAndroid="transparent">
-                </TextInput>
+                    underlineColorAndroid="transparent"
+                    value={this.props.value}
+                    onChangeText={this.props.onChange}/>
             </View>
         )
     }
 }
 
-MyTextInput.propTypes = {
+TextInput.propTypes = {
     placeholder: PropTypes.string.isRequired,
-    icon: PropTypes.any
+    icon: PropTypes.any,
+    onChange: PropTypes.func,
+    value: PropTypes.string
 };
 
-export default MyTextInput;
+export default TextInput;
