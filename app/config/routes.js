@@ -5,9 +5,9 @@ import HomePage from "../screens/Home";
 import RegisterPage from "../screens/Register";
 
 const AppNavigator = StackNavigator({
+    Home: {screen: HomePage},
     Login: {screen: LoginPage},
-    Register: {screen: RegisterPage},
-    Home: {screen: HomePage}
+    Register: {screen: RegisterPage}
 });
 
 export default AppNavigator;
