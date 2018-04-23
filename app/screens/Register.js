@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React from 'react';
 import {
     StyleSheet,
     View,
@@ -9,15 +9,14 @@ import {Card} from "../components/layouts";
 import {TextInput, ConfirmInput} from "../components/inputs";
 import {PrimaryButton} from "../components/buttons";
 
-type Props = {};
-export default class RegisterPage extends Component<Props> {
+export default class RegisterPage extends React.Component {
 
     static navigationOptions = {
         header: null
     };
 
     _register = () => {
-        this.props.navigation.navigate('Home');
+        alert('Function not implemented!')
     };
 
     _navigateBack = () => this.props.navigation.goBack();

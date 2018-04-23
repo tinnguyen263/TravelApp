@@ -5,8 +5,8 @@ import HomePage from "../screens/Home";
 import RegisterPage from "../screens/Register";
 
 const AppNavigator = StackNavigator({
-    Login: {screen: LoginPage},
     Home: {screen: HomePage},
+    Login: {screen: LoginPage},
     Register: {screen: RegisterPage}
 });
 
