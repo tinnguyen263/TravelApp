@@ -4,7 +4,8 @@ import {
     Text,
     View,
     ImageBackground,
-    Image
+    Image,
+    AsyncStorage
 } from 'react-native';
 import {PrimaryButton} from "../components/buttons";
 import {TextInput} from "../components/inputs";
@@ -47,13 +48,23 @@ export default class LoginPage extends React.Component {
             this._authenticate(this.state.email, this.state.password).then(response => response.json())
                 .then(responseJson => {
                     if (responseJson.status) {
-                        this._navigateHome();
+                        AsyncStorage.setItem('token', responseJson.data.token)
+                            .then(() => {
+                                this._navigateHome();
+                            })
+                            .catch(error => {
+                                console.warn(error);
+                                alert('Error saving token');
+                            })
                     }
                     else {
                         alert(responseJson.message);
                     }
                 })
-                .catch(error => console.error(error))
+                .catch(error => {
+                    console.error(error);
+                    alert('Error sending request')
+                })
                 .finally(() => this._hideLoader());
         }, 1000);
     };
