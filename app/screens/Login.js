@@ -4,11 +4,13 @@ import {
     Text,
     View,
     ImageBackground,
-    Image
+    Image,
+    AsyncStorage
 } from 'react-native';
 import {PrimaryButton} from "../components/buttons";
 import {TextInput} from "../components/inputs";
 import {Card} from "../components/layouts";
+import {Loader} from "../components/modal";
 
 const appStyles = {
     primaryColor: '#518ffb',
@@ -26,7 +28,8 @@ export default class LoginPage extends React.Component {
         super(props);
         this.state = {
             email: '',
-            password: ''
+            password: '',
+            loading: false
         }
     }
 
@@ -37,16 +40,33 @@ export default class LoginPage extends React.Component {
     };
 
     _login = () => {
-        this._authenticate(this.state.email, this.state.password).then(response => response.json())
-            .then(responseJson => {
-                if (responseJson.status) {
-                    this._navigateHome();
-                }
-                else {
-                    alert(responseJson.message);
-                }
-            })
-            .catch(error => console.error(error));
+        this._showLoader();
+
+        // due to quick response from server, loading modal does not have chance to show up
+        // setTimeOut to demonstrate how modal shows on slow network
+        setTimeout(() => {
+            this._authenticate(this.state.email, this.state.password).then(response => response.json())
+                .then(responseJson => {
+                    if (responseJson.status) {
+                        AsyncStorage.setItem('token', responseJson.data.token)
+                            .then(() => {
+                                this._navigateHome();
+                            })
+                            .catch(error => {
+                                console.warn(error);
+                                alert('Error saving token');
+                            })
+                    }
+                    else {
+                        alert(responseJson.message);
+                    }
+                })
+                .catch(error => {
+                    console.error(error);
+                    alert('Error sending request')
+                })
+                .finally(() => this._hideLoader());
+        }, 1000);
     };
 
     _register = () => {
@@ -65,6 +85,10 @@ export default class LoginPage extends React.Component {
             }
         });
     };
+
+    _showLoader = () => this.setState({loading: true});
+
+    _hideLoader = () => this.setState({loading: false});
 
     render() {
         return (
@@ -122,6 +146,8 @@ export default class LoginPage extends React.Component {
                         </Text>
                     </View>
                 </View>
+
+                <Loader loading={this.state.loading}/>
 
             </ImageBackground>
         );

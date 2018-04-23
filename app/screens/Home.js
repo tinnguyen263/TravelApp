@@ -4,10 +4,12 @@ import {
     View,
     Text,
     TouchableHighlight,
-    ImageBackground, ScrollView
+    ImageBackground,
+    ScrollView,
+    AsyncStorage
 } from 'react-native';
 import {BottomNav} from "../components/bottom-nav";
-import ListItem from "../components/list/list-item";
+import {ListItem} from "../components/list";
 
 export default class HomePage extends Component {
 
@@ -18,6 +20,7 @@ export default class HomePage extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            ready: false,
             bottomNavItems: [
                 {
                     title: 'Home',
@@ -141,7 +144,35 @@ export default class HomePage extends Component {
         }
     }
 
-    render() {
+    componentDidMount() {
+        AsyncStorage.getItem('token')
+            .then((token) => {
+                if (token !== null) {
+                    this.setState({ready: true});
+                }
+                else {
+                    this.setState({ready: false});
+                    this._navigateLoginPage();
+                }
+
+            })
+            .catch(() => {
+                this.setState({ready: false});
+                this._navigateLoginPage();
+            });
+    }
+
+    _navigateLoginPage = () => this.props.navigation.navigate('Login');
+
+    _renderLoading = () => {
+        return (
+            <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+                <Text>Loading...</Text>
+            </View>
+        );
+    };
+
+    _renderLoaded() {
         return (
             <View style={styles.container}>
 
@@ -154,15 +185,14 @@ export default class HomePage extends Component {
                 <ScrollView style={styles.pageContent}>
                     <Text style={styles.listHeader}>New listings near you</Text>
                     {this.state.flights.map((city, cityIndex) => (
-                        <View>
+                        <View key={`c${cityIndex}`}>
                             <Text style={styles.subListHeader}>
                                 {city.cityName}
                             </Text>
                             <View style={styles.subList}>
                                 {city.flights.map((flight, flightIndex) => (
-                                    <View style={styles.listItem}>
+                                    <View style={styles.listItem} key={`c${cityIndex}f${flightIndex}`}>
                                         <ListItem
-                                            key={flightIndex*cityIndex}
                                             image={flight.image}
                                             airportName={flight.airportName}
                                             loungeName={flight.loungeName}
@@ -195,6 +225,13 @@ export default class HomePage extends Component {
                     }}/>
             </View>
         );
+    }
+
+    render() {
+        if (this.state.ready) {
+            return this._renderLoaded();
+        }
+        return this._renderLoading();
     }
 }
 
