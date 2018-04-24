@@ -11,15 +11,22 @@ import {PrimaryButton} from "../components/buttons";
 
 export default class RegisterPage extends React.Component {
 
-    static navigationOptions = {
-        header: null
+    constructor(props) {
+        super(props);
+
+        this.props.navigator.setStyle({
+            navBarHidden: true
+        });
     };
 
     _register = () => {
         alert('Function not implemented!')
     };
 
-    _navigateBack = () => this.props.navigation.goBack();
+    _navigateBack = () => this.props.navigator.pop({
+        animated: true,
+        animationType: 'fade',
+    });
 
     render() {
         return (

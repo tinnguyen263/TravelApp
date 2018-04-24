@@ -1,4 +1,13 @@
-import { AppRegistry } from 'react-native';
-import App from './App';
+import { Navigation } from 'react-native-navigation';
 
-AppRegistry.registerComponent('TravelApp', () => App);
+import { registerScreens } from './app/screens';
+
+registerScreens();
+
+Navigation.startSingleScreenApp({
+	screen:
+	{
+		screen: 'travelapp.homePage'
+	}
+
+});
