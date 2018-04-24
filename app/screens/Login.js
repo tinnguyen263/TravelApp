@@ -7,10 +7,10 @@ import {
     Image,
     AsyncStorage
 } from 'react-native';
-import {PrimaryButton} from "../components/buttons";
-import {TextInput} from "../components/inputs";
-import {Card} from "../components/layouts";
-import {Loader} from "../components/modal";
+import {PrimaryButton} from '../components/buttons';
+import {TextInput} from '../components/inputs';
+import {Card} from '../components/layouts';
+import {Loader} from '../components/modal';
 
 const appStyles = {
     primaryColor: '#518ffb',
@@ -20,12 +20,13 @@ const appStyles = {
 
 export default class LoginPage extends React.Component {
 
-    static navigationOptions = {
-        header: null
-    };
-
     constructor(props) {
         super(props);
+
+        this.props.navigator.setStyle({
+            navBarHidden: true
+        });
+
         this.state = {
             email: '',
             password: '',
@@ -69,13 +70,12 @@ export default class LoginPage extends React.Component {
         }, 1000);
     };
 
-    _register = () => {
-        this.props.navigation.navigate('Register');
-    };
+    _register = () => this.props.navigator.push({screen: 'travelapp.registerPage'});
 
-    _navigateHome = () => {
-        this.props.navigation.navigate('Home');
-    };
+    _navigateHome = () => this.props.navigator.pop({
+        animated: true,
+        animationType: 'fade',
+    });
 
     _setMockData = () => {
         this.setState(() => {

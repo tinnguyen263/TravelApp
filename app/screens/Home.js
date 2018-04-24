@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React from 'react';
 import {
     StyleSheet,
     View,
@@ -8,143 +8,152 @@ import {
     ScrollView,
     AsyncStorage
 } from 'react-native';
-import {BottomNav} from "../components/bottom-nav";
-import {ListItem} from "../components/list";
+import {BottomNav} from '../components/bottom-nav';
+import {ListItem} from '../components/list';
 
-export default class HomePage extends Component {
+const navItems = [
+    {
+        title: 'Home',
+        icon: require('./../../images/home_bottom.png'),
+        iconActive: require('./../../images/home_bottom_hl.png'),
+    },
+    {
+        title: 'Activities',
+        icon: require('./../../images/activity_bottom.png'),
+        iconActive: require('./../../images/activity_bottom_hl.png'),
+    },
+    {
+        title: 'Add Listings',
+        icon: require('./../../images/add_bottom.png'),
+        iconActive: require('./../../images/add_bottom_hl.png'),
+    },
+    {
+        title: 'Notifications',
+        icon: require('./../../images/notify_bottom.png'),
+        iconActive: require('./../../images/notify_bottom_hl.png'),
+    },
+    {
+        title: 'Others',
+        icon: require('./../../images/more_bottom.png'),
+        iconActive: require('./../../images/more_bottom_hl.png'),
+    }
+]
+const listItems = [
+    {
+        cityName: 'Ho Chi Minh City, Viet Nam',
+        listItems: [
+            {
+                airportName: 'TAN SON NHAT AIRPORT',
+                image: require('./../../images/flight_temp.png'),
+                loungeName: 'SILVERKRIS',
+                time: '02/17/2018 • 06:10 - 13:10',
+                guest: 15,
+                isAvailable: true,
+                price: 99
+            }
+        ]
+    },
+    {
+        cityName: 'East Berlin, United States',
+        listItems: [
+            {
+                airportName: 'AIRPORT NAME',
+                image: require('./../../images/flight_temp.png'),
+                loungeName: 'LOUNGE NAME',
+                time: '02/17/2018 • 06:10 - 13:10',
+                guest: 15,
+                isAvailable: true,
+                price: 99
+            },
+            {
+                airportName: 'AIRPORT NAME',
+                image: require('./../../images/flight_temp.png'),
+                loungeName: 'LOUNGE NAME',
+                time: '02/17/2018 • 06:10 - 13:10',
+                guest: 15,
+                isAvailable: true,
+                price: 99
+            },
+            {
+                airportName: 'AIRPORT NAME',
+                image: require('./../../images/flight_temp.png'),
+                loungeName: 'LOUNGE NAME',
+                time: '02/17/2018 • 06:10 - 13:10',
+                guest: 15,
+                isAvailable: true,
+                price: 99
+            },
+            {
+                airportName: 'AIRPORT NAME',
+                image: require('./../../images/flight_temp.png'),
+                loungeName: 'LOUNGE NAME',
+                time: '02/17/2018 • 06:10 - 13:10',
+                guest: 15,
+                isAvailable: true,
+                price: 99
+            },
+            {
+                airportName: 'AIRPORT NAME',
+                image: require('./../../images/flight_temp.png'),
+                loungeName: 'LOUNGE NAME',
+                time: '02/17/2018 • 06:10 - 13:10',
+                guest: 15,
+                isAvailable: true,
+                price: 99
+            },
+            {
+                airportName: 'AIRPORT NAME',
+                image: require('./../../images/flight_temp.png'),
+                loungeName: 'LOUNGE NAME',
+                time: '02/17/2018 • 06:10 - 13:10',
+                guest: 15,
+                isAvailable: true,
+                price: 99
+            },
+            {
+                airportName: 'AIRPORT NAME',
+                image: require('./../../images/flight_temp.png'),
+                loungeName: 'LOUNGE NAME',
+                time: '02/17/2018 • 06:10 - 13:10',
+                guest: 15,
+                isAvailable: true,
+                price: 99
+            },
+            {
+                airportName: 'AIRPORT NAME',
+                image: require('./../../images/flight_temp.png'),
+                loungeName: 'LOUNGE NAME',
+                time: '02/17/2018 • 06:10 - 13:10',
+                guest: 15,
+                isAvailable: true,
+                price: 99
+            }
+        ]
+    }
+]
 
-    static navigationOptions = {
-        header: null
-    };
+export default class HomePage extends React.Component {
 
     constructor(props) {
         super(props);
+
+        this.props.navigator.setStyle({
+            navBarHidden: true
+        });
+
         this.state = {
             ready: false,
-            bottomNavItems: [
-                {
-                    title: 'Home',
-                    icon: require('./../../images/home_bottom.png'),
-                    iconActive: require('./../../images/home_bottom_hl.png'),
-                },
-                {
-                    title: 'Activities',
-                    icon: require('./../../images/activity_bottom.png'),
-                    iconActive: require('./../../images/activity_bottom_hl.png'),
-                },
-                {
-                    title: 'Add Listings',
-                    icon: require('./../../images/add_bottom.png'),
-                    iconActive: require('./../../images/add_bottom_hl.png'),
-                },
-                {
-                    title: 'Notifications',
-                    icon: require('./../../images/notify_bottom.png'),
-                    iconActive: require('./../../images/notify_bottom_hl.png'),
-                },
-                {
-                    title: 'Others',
-                    icon: require('./../../images/more_bottom.png'),
-                    iconActive: require('./../../images/more_bottom_hl.png'),
-                }
-            ],
-            flights: [
-                {
-                    cityName: 'Ho Chi Minh City, Viet Nam',
-                    flights: [
-                        {
-                            airportName: 'TAN SON NHAT AIRPORT',
-                            image: require('./../../images/flight_temp.png'),
-                            loungeName: 'SILVERKRIS',
-                            time: '02/17/2018 • 06:10 - 13:10',
-                            guest: 15,
-                            isAvailable: true,
-                            price: 99
-                        }
-                    ]
-                },
-                {
-                    cityName: 'East Berlin, United States',
-                    flights: [
-                        {
-                            airportName: 'AIRPORT NAME',
-                            image: require('./../../images/flight_temp.png'),
-                            loungeName: 'LOUNGE NAME',
-                            time: '02/17/2018 • 06:10 - 13:10',
-                            guest: 15,
-                            isAvailable: true,
-                            price: 99
-                        },
-                        {
-                            airportName: 'AIRPORT NAME',
-                            image: require('./../../images/flight_temp.png'),
-                            loungeName: 'LOUNGE NAME',
-                            time: '02/17/2018 • 06:10 - 13:10',
-                            guest: 15,
-                            isAvailable: true,
-                            price: 99
-                        },
-                        {
-                            airportName: 'AIRPORT NAME',
-                            image: require('./../../images/flight_temp.png'),
-                            loungeName: 'LOUNGE NAME',
-                            time: '02/17/2018 • 06:10 - 13:10',
-                            guest: 15,
-                            isAvailable: true,
-                            price: 99
-                        },
-                        {
-                            airportName: 'AIRPORT NAME',
-                            image: require('./../../images/flight_temp.png'),
-                            loungeName: 'LOUNGE NAME',
-                            time: '02/17/2018 • 06:10 - 13:10',
-                            guest: 15,
-                            isAvailable: true,
-                            price: 99
-                        },
-                        {
-                            airportName: 'AIRPORT NAME',
-                            image: require('./../../images/flight_temp.png'),
-                            loungeName: 'LOUNGE NAME',
-                            time: '02/17/2018 • 06:10 - 13:10',
-                            guest: 15,
-                            isAvailable: true,
-                            price: 99
-                        },
-                        {
-                            airportName: 'AIRPORT NAME',
-                            image: require('./../../images/flight_temp.png'),
-                            loungeName: 'LOUNGE NAME',
-                            time: '02/17/2018 • 06:10 - 13:10',
-                            guest: 15,
-                            isAvailable: true,
-                            price: 99
-                        },
-                        {
-                            airportName: 'AIRPORT NAME',
-                            image: require('./../../images/flight_temp.png'),
-                            loungeName: 'LOUNGE NAME',
-                            time: '02/17/2018 • 06:10 - 13:10',
-                            guest: 15,
-                            isAvailable: true,
-                            price: 99
-                        },
-                        {
-                            airportName: 'AIRPORT NAME',
-                            image: require('./../../images/flight_temp.png'),
-                            loungeName: 'LOUNGE NAME',
-                            time: '02/17/2018 • 06:10 - 13:10',
-                            guest: 15,
-                            isAvailable: true,
-                            price: 99
-                        }
-                    ]
-                }
-            ]
-        }
+            navItems: navItems,
+            listItems: listItems
+        };
+
     }
 
     componentDidMount() {
+        this._checkAuthentication();
+    }
+
+    _checkAuthentication = () => {
         AsyncStorage.getItem('token')
             .then((token) => {
                 if (token !== null) {
@@ -152,17 +161,20 @@ export default class HomePage extends Component {
                 }
                 else {
                     this.setState({ready: false});
-                    this._navigateLoginPage();
+                    this._requireLogin();
                 }
-
             })
             .catch(() => {
                 this.setState({ready: false});
-                this._navigateLoginPage();
+                this._requireLogin();
             });
-    }
+    };
 
-    _navigateLoginPage = () => this.props.navigation.navigate('Login');
+    _requireLogin = () => {
+        this._navigateLoginPage();
+    };
+
+    _navigateLoginPage = () => this.props.navigator.push({screen: 'travelapp.loginPage'});
 
     _renderLoading = () => {
         return (
@@ -184,13 +196,13 @@ export default class HomePage extends Component {
 
                 <ScrollView style={styles.pageContent}>
                     <Text style={styles.listHeader}>New listings near you</Text>
-                    {this.state.flights.map((city, cityIndex) => (
+                    {this.state.listItems.map((city, cityIndex) => (
                         <View key={`c${cityIndex}`}>
                             <Text style={styles.subListHeader}>
                                 {city.cityName}
                             </Text>
                             <View style={styles.subList}>
-                                {city.flights.map((flight, flightIndex) => (
+                                {city.listItems.map((flight, flightIndex) => (
                                     <View style={styles.listItem} key={`c${cityIndex}f${flightIndex}`}>
                                         <ListItem
                                             image={flight.image}
@@ -220,7 +232,7 @@ export default class HomePage extends Component {
                 </TouchableHighlight>
 
                 <BottomNav
-                    items={this.state.bottomNavItems}
+                    items={this.state.navItems}
                     onSelect={() => {
                     }}/>
             </View>
