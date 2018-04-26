@@ -1,4 +1,6 @@
+/* eslint-disable global-require */
 import React from 'react';
+import { connect } from "react-redux";
 import {
     StyleSheet,
     Text,
@@ -7,10 +9,11 @@ import {
     Image,
     AsyncStorage
 } from 'react-native';
-import {PrimaryButton} from '../components/buttons';
-import {TextInput} from '../components/inputs';
-import {Card} from '../components/layouts';
-import {Loader} from '../components/modal';
+import { PrimaryButton } from '../components/buttons';
+import { TextInput } from '../components/inputs';
+import { Card } from '../components/layouts';
+import { Loader } from '../components/modal';
+
 
 const appStyles = {
     primaryColor: '#518ffb',
@@ -18,7 +21,7 @@ const appStyles = {
     dimmedTextColor: '#D0D0D0'
 };
 
-export default class LoginPage extends React.Component {
+class LoginPage extends React.Component {
 
     constructor(props) {
         super(props);
@@ -31,16 +34,16 @@ export default class LoginPage extends React.Component {
             email: '',
             password: '',
             loading: false
-        }
+        };
     }
 
-    _authenticate = (email, password) => {
+    _authenticate(email, password) {
         return fetch(`http://travel-app.speedup.world/api/login?email=${email}&password=${password}`, {
             method: 'POST'
         });
-    };
+    }
 
-    _login = () => {
+    _login() {
         this._showLoader();
 
         // due to quick response from server, loading modal does not have chance to show up
@@ -56,39 +59,44 @@ export default class LoginPage extends React.Component {
                             .catch(error => {
                                 console.warn(error);
                                 alert('Error saving token');
-                            })
-                    }
-                    else {
+                            });
+                    } else {
                         alert(responseJson.message);
                     }
                 })
                 .catch(error => {
                     console.error(error);
-                    alert('Error sending request')
+                    alert('Error sending request');
                 })
                 .finally(() => this._hideLoader());
         }, 1000);
-    };
+    }
 
-    _register = () => this.props.navigator.push({screen: 'travelapp.registerPage'});
+    _register() {
+        this.props.navigator.push({ screen: 'travelapp.registerPage' });
+    }
 
-    _navigateHome = () => this.props.navigator.pop({
-        animated: true,
-        animationType: 'fade',
-    });
-
-    _setMockData = () => {
-        this.setState(() => {
-            return {
-                email: 'chung.pv0795@gmail.com',
-                password: '123456'
-            }
+    _navigateHome() {
+        this.props.navigator.pop({
+            animated: true,
+            animationType: 'fade'
         });
-    };
+    }
 
-    _showLoader = () => this.setState({loading: true});
+    _setMockData() {
+        this.setState({
+            email: 'chung.pv0795@gmail.com',
+            password: '123456'
+        });
+    }
 
-    _hideLoader = () => this.setState({loading: false});
+    _showLoader() {
+        this.setState({ loading: true });
+    }
+
+    _hideLoader() {
+        this.setState({ loading: false });
+    }
 
     render() {
         return (
@@ -100,7 +108,8 @@ export default class LoginPage extends React.Component {
                     <View style={styles.logoAndAppName}>
                         <Image
                             style={styles.logo}
-                            source={require('../../images/logo.png')}/>
+                            source={require('../../images/logo.png')}
+                        />
                         <Text style={styles.appName}>
                             Archer
                         </Text>
@@ -110,21 +119,24 @@ export default class LoginPage extends React.Component {
                         <Card
                             title={'LOGIN'}
                             cardContent={
-                                <View style={{marginTop: 8}}>
+                                <View style={{ marginTop: 8 }}>
                                     <TextInput
                                         icon={require('../../images/email.png')}
                                         placeholder={'E-mail'}
                                         value={this.state.email}
-                                        onChange={email => this.setState({email})}/>
+                                        onChange={email => this.setState({ email })}
+                                    />
 
                                     <TextInput
                                         icon={require('../../images/lock.png')}
                                         placeholder={'Password'}
                                         value={this.state.password}
-                                        onChange={password => this.setState({password})}/>
+                                        onChange={password => this.setState({ password })}
+                                    />
 
-                                    <Text style={[styles.hyperLink, styles.forgotPasswordText]}
-                                          onPress={this._setMockData}>
+                                    <Text
+                                        style={[styles.hyperLink, styles.forgotPasswordText]}
+                                        onPress={this._setMockData}>
                                         Forgot passwords?
                                     </Text>
                                 </View>
@@ -132,8 +144,8 @@ export default class LoginPage extends React.Component {
                             cardAction={
                                 <PrimaryButton
                                     buttonText={'LOGIN'}
-                                    onPress={this._login}>
-                                </PrimaryButton>
+                                    onPress={this._login}
+                                />
                             }
                         />
                     </View>
@@ -147,7 +159,7 @@ export default class LoginPage extends React.Component {
                     </View>
                 </View>
 
-                <Loader loading={this.state.loading}/>
+                <Loader loading={this.state.loading} />
 
             </ImageBackground>
         );
@@ -204,3 +216,9 @@ const styles = StyleSheet.create({
         marginBottom: 16
     }
 });
+
+function mapStateToProps(state, ownProps) {
+    return {};
+}
+
+export default connect(mapStateToProps)(LoginPage);
