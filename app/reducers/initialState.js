@@ -1,5 +1,6 @@
 /* eslint-disable global-require */
 export default {
+    isLoading: false,
     auth: {
         isLoggedIn: false,
         userName: null,
