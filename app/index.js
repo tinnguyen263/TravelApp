@@ -1,2 +1,3 @@
-/* eslint-disable no-unused-vars */
-import React from 'react';
+import AppNavigator from './config/routes';
+
+export default AppNavigator;
