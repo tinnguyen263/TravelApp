@@ -1,5 +1,6 @@
 import { connect } from "react-redux";
 import HomePage from './home.component';
+import { logout } from './home.actions';
 
 const mapStateToProps = state => ({
     listItems: state.flights,
@@ -8,6 +9,8 @@ const mapStateToProps = state => ({
     userEmail: state.auth.email
 });
 
-// const mapDispatchToProps = dispatch => ({});
+const mapDispatchToProps = dispatch => ({
+    onLogout: () => dispatch(logout())
+});
 
-export default connect(mapStateToProps, null)(HomePage);
+export default connect(mapStateToProps, mapDispatchToProps)(HomePage);

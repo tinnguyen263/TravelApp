@@ -17,6 +17,16 @@ const rootReducer = (state = initialState, action) => {
                     token: action.payload.token
                 }
             };
+        case types.LOGOUT:
+            return {
+                ...state,
+                auth: {
+                    isLoggedIn: false,
+                    email: null,
+                    userName: null,
+                    token: null
+                }
+            };
         default:
             return state;
     }

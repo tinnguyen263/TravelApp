@@ -4,7 +4,8 @@ import {
     Text,
     View,
     ImageBackground,
-    Image
+    Image,
+    BackHandler
 } from 'react-native';
 import PropTypes from 'prop-types';
 import { PrimaryButton } from '../../components/buttons/index';
@@ -27,11 +28,20 @@ class LoginPage extends React.Component {
         this._submitLogin = this._submitLogin.bind(this);
     }
 
+    componentDidMount() {
+        BackHandler.addEventListener('hardwareBackPress', this.handleBackButton);
+    }
+
     componentWillReceiveProps(newProps) {
         if (newProps.isLoggedIn) {
             this._navigateRoot();
         }
     }
+
+    componentWillUnmount() {
+        BackHandler.removeEventListener('hardwareBackPress', this.handleBackButton);
+    }
+
 
     _navigateRoot() {
         this.props.navigator.popToRoot();
@@ -52,6 +62,10 @@ class LoginPage extends React.Component {
 
     _submitLogin() {
         this.props.onSubmitLogin(this.state.email, this.state.password);
+    }
+
+    handleBackButton() {
+        return true;
     }
 
     render() {
