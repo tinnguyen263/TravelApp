@@ -11,6 +11,7 @@ import { PropTypes } from 'prop-types';
 import { styles } from './home.styles';
 import { BottomNav } from '../../components/bottom-nav/index';
 import { ListItem } from '../../components/list/index';
+import ImageButton from "../../components/buttons/image-button";
 
 class HomePage extends React.Component {
 
@@ -23,6 +24,13 @@ class HomePage extends React.Component {
     componentWillMount() {
         // if user is not logged in, redirect to login screen
         if (!this.props.isLoggedIn) {
+            this._navigateLoginPage();
+        }
+    }
+
+    componentWillReceiveProps(newProps) {
+        // if user is not logged in, redirect to login screen
+        if (!newProps.isLoggedIn) {
             this._navigateLoginPage();
         }
     }
@@ -58,11 +66,15 @@ class HomePage extends React.Component {
 
         return (
             <View style={styles.container}>
-
                 <View style={styles.pageHeader}>
                     <Text style={styles.title}>
-                        Home Page: {this.props.userEmail}
+                        {this.props.userEmail}
                     </Text>
+                    <ImageButton
+                            image={require('./../../../images/exit.png')}
+                            onPress={this.props.onLogout}>
+                        <View style={{ width: 20, height: 20 }} />
+                    </ImageButton>
                 </View>
 
                 <ScrollView style={styles.pageContent}>
@@ -84,8 +96,7 @@ class HomePage extends React.Component {
 
                 <BottomNav
                     items={this.props.navItems}
-                    onSelect={() => {
-                    }}
+                    onSelect={() => {}}
                 />
             </View>
         );
@@ -98,7 +109,8 @@ HomePage.propTypes = {
     navItems: PropTypes.array.isRequired,
     listItems: PropTypes.array.isRequired,
     userEmail: PropTypes.string,
-    navigator: PropTypes.object
+    navigator: PropTypes.object,
+    onLogout: PropTypes.func
 };
 
 HomePage.navigatorStyle = {

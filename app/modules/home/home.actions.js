@@ -1,4 +1,6 @@
 /* eslint-disable import/prefer-default-export */
-// import * as actionTypes from '../../constants/actionTypes';
+import * as actionTypes from '../../constants/actionTypes';
 
-// actions of Home Page
+export const logout = () => ({
+    type: actionTypes.LOGOUT
+});
