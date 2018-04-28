@@ -1,9 +1,10 @@
+/* eslint-disable no-console */
 import { connect } from "react-redux";
 import LoginPage from "./login.component";
 import { authenticate } from './login.actions';
 
 const mapStateToProps = state => ({
-    isLoading: state.isLoading,
+    isLoading: state.app.isLoading,
     isLoggedIn: state.auth.isLoggedIn
 });
 

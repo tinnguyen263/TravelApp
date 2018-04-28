@@ -137,7 +137,7 @@ class LoginPage extends React.Component {
 }
 
 LoginPage.propTypes = {
-    isLoading: PropTypes.bool.isRequired,
+    isLoading: PropTypes.bool,
     // eslint-disable-next-line react/no-unused-prop-types
     isLoggedIn: PropTypes.bool.isRequired,
     onSubmitLogin: PropTypes.func.isRequired,

@@ -2,5 +2,5 @@
 import * as actionTypes from '../../constants/actionTypes';
 
 export const logout = () => ({
-    type: actionTypes.LOGOUT
+    type: actionTypes.AUTH_LOGOUT
 });
