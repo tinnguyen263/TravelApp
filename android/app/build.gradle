@@ -94,15 +94,15 @@ def enableSeparateBuildPerCPUArchitecture = false
 def enableProguardInReleaseBuilds = false
 
 android {
-    compileSdkVersion 25
+    compileSdkVersion 27
     buildToolsVersion "25.0.1"
 
     defaultConfig {
         applicationId "com.travelapp"
-        minSdkVersion 16
-        targetSdkVersion 22
+        minSdkVersion 21
+        targetSdkVersion 27
         versionCode 1
-        versionName "1.6"
+        versionName "1.0"
         ndk {
             abiFilters "armeabi-v7a", "x86"
         }
