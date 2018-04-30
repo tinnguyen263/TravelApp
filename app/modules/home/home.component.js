@@ -21,16 +21,16 @@ class HomePage extends React.Component {
         this._navigateLoginPage = this._navigateLoginPage.bind(this);
     }
 
-    componentWillMount() {
+    componentDidMount() {
         // if user is not logged in, redirect to login screen
         if (!this.props.isLoggedIn) {
             this._navigateLoginPage();
         }
     }
 
-    componentWillReceiveProps(newProps) {
+    componentDidUpdate() {
         // if user is not logged in, redirect to login screen
-        if (!newProps.isLoggedIn) {
+        if (!this.props.isLoggedIn) {
             this._navigateLoginPage();
         }
     }
@@ -41,6 +41,15 @@ class HomePage extends React.Component {
     }
 
     render() {
+        if (this.props.isLoading || !this.props.isLoggedIn) {
+            return (
+                <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+                    <Text>Loading</Text>
+                </View>
+            );
+        }
+
+
         const listItems = this.props.listItems.map((city, cityIndex) => (
             <View key={`c${cityIndex}`}>
                 <Text style={styles.subListHeader}>
@@ -110,7 +119,8 @@ HomePage.propTypes = {
     listItems: PropTypes.array.isRequired,
     userEmail: PropTypes.string,
     navigator: PropTypes.object,
-    onLogout: PropTypes.func
+    onLogout: PropTypes.func,
+    isLoading: PropTypes.bool
 };
 
 HomePage.navigatorStyle = {

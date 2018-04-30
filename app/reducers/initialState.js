@@ -1,7 +1,7 @@
 /* eslint-disable global-require */
 export default {
     app: {
-        isLoading: false,
+        isLoading: true,
         message: null
     },
     auth: {
