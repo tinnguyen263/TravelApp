@@ -6,7 +6,8 @@ const mapStateToProps = state => ({
     listItems: state.flights,
     navItems: state.bottomNavItems,
     isLoggedIn: state.auth.isLoggedIn,
-    userEmail: state.auth.email
+    userEmail: state.auth.email,
+    isLoading: state.app.isLoading
 });
 
 const mapDispatchToProps = dispatch => ({

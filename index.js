@@ -5,18 +5,25 @@ import { Navigation } from 'react-native-navigation';
 import { PersistGate, persistStore } from "redux-persist";
 import initStore from './app/store/configureStore';
 import registerScreens from './app/screens';
-import initialState from "./app/reducers/initialState";
+import * as actionTypes from './app/constants/actionTypes';
 
 const store = initStore();
 
-persistStore(store, null, () => {
-    registerScreens(store, Provider);
+registerScreens(store, Provider);
 
-    // noinspection JSIgnoredPromiseFromCall
-    Navigation.startSingleScreenApp({
-        screen:
-        {
-            screen: 'travelapp.home'
+// noinspection JSIgnoredPromiseFromCall
+Navigation.startSingleScreenApp({
+    screen: {
+        screen: 'travelapp.home'
+    }
+});
+
+persistStore(store, null, () => {
+    store.dispatch({
+        type: actionTypes.APP_SET_LOADING,
+        payload: {
+            isLoading: false
         }
     });
 });
+

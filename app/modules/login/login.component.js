@@ -32,8 +32,8 @@ class LoginPage extends React.Component {
         BackHandler.addEventListener('hardwareBackPress', this.handleBackButton);
     }
 
-    componentWillReceiveProps(newProps) {
-        if (newProps.isLoggedIn) {
+    componentDidUpdate() {
+        if (this.props.isLoggedIn) {
             this._navigateRoot();
         }
     }
