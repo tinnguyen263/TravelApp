@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 import HomePage from './home.component';
-import { logout } from './home.actions';
+import { logout } from "../../actions/authentication-actions";
 
 const mapStateToProps = state => ({
     listItems: state.flights,

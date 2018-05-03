@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
 import { connect } from "react-redux";
 import LoginPage from "./login.component";
-import { authenticate } from './login.actions';
+import { login } from "../../actions/authentication-actions";
 
 const mapStateToProps = state => ({
     isLoading: state.app.isLoading,
@@ -9,7 +9,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-    onSubmitLogin: (username, password) => dispatch(authenticate(username, password))
+    onSubmitLogin: (username, password) => dispatch(login(username, password))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(LoginPage);

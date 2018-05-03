@@ -5,9 +5,10 @@ import { persistReducer } from "redux-persist";
 import storage from 'redux-persist/lib/storage';
 import thunk from 'redux-thunk';
 import logger from 'redux-logger';
+import createSagaMiddleware from 'redux-saga';
 import rootReducer from '../reducers/rootReducer';
-import initialState from "../reducers/initialState";
-
+import initialState from "../initialState";
+import rootSaga from "../sagas";
 
 const persistConfig = {
     key: 'root',
@@ -16,6 +17,10 @@ const persistConfig = {
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 
+const sagaMiddleware = createSagaMiddleware();
+
 export default function initStore() {
-    return createStore(persistedReducer, initialState, applyMiddleware(thunk, logger));
+    const store = createStore(persistedReducer, initialState, applyMiddleware(thunk, sagaMiddleware, logger));
+    sagaMiddleware.run(rootSaga);
+    return store;
 }

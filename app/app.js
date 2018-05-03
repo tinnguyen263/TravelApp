@@ -5,7 +5,7 @@ import { Navigation } from 'react-native-navigation';
 import { persistStore } from "redux-persist";
 import initStore from './store/configureStore';
 import { registerScreens, registerScreenVisibilityListener } from './screens';
-import * as actionTypes from './constants/actionTypes';
+import * as actionTypes from './actions/actionTypes';
 
 const store = initStore();
 
