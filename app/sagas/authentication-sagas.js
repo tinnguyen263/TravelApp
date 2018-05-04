@@ -1,8 +1,8 @@
 /* eslint-disable import/prefer-default-export */
 import { call, put } from 'redux-saga/effects';
 import api from './../api';
-import { saveAuthenticationData, deleteAuthenticationData } from "./actions/authentication-actions";
-import { hideLoading, showLoading, showMessage } from "./actions/app-state-actions";
+import { saveAuthenticationData, deleteAuthenticationData } from "../actions/authentication-actions";
+import { hideLoading, showLoading, showMessage } from "../actions/app-state-actions";
 
 
 export function* authenticate(action) {

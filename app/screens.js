@@ -1,8 +1,8 @@
 /* eslint-disable import/no-named-as-default,import/no-named-as-default-member,no-console */
 import { Navigation, ScreenVisibilityListener } from 'react-native-navigation';
-import HomePage from "./modules/home";
-import LoginPage from "./modules/login";
-import RegisterPage from "./modules/register";
+import HomePage from "./screens/home";
+import LoginPage from "./screens/login";
+import RegisterPage from "./screens/register";
 
 export function registerScreens(store, Provider) {
     Navigation.registerComponent('travelapp.home', () => HomePage, store, Provider);
