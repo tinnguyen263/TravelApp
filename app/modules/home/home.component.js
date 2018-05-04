@@ -81,7 +81,7 @@ class HomePage extends React.Component {
                     </Text>
                     <ImageButton
                             image={require('./../../../images/exit.png')}
-                            onPress={this.props.onLogout}>
+                            onPress={this.props.logout}>
                         <View style={{ width: 20, height: 20 }} />
                     </ImageButton>
                 </View>
@@ -119,7 +119,7 @@ HomePage.propTypes = {
     listItems: PropTypes.array.isRequired,
     userEmail: PropTypes.string,
     navigator: PropTypes.object,
-    onLogout: PropTypes.func,
+    logout: PropTypes.func,
     isLoading: PropTypes.bool
 };
 
