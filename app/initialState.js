@@ -1,7 +1,7 @@
 /* eslint-disable global-require */
 export default {
     app: {
-        isLoading: false,
+        isLoading: true,
         message: null
     },
     auth: {
@@ -13,28 +13,28 @@ export default {
     bottomNavItems: [
         {
             title: 'Home',
-            icon: require('./../../images/home_bottom.png'),
-            iconActive: require('./../../images/home_bottom_hl.png')
+            icon: require('../images/home_bottom.png'),
+            iconActive: require('../images/home_bottom_hl.png')
         },
         {
             title: 'Activities',
-            icon: require('./../../images/activity_bottom.png'),
-            iconActive: require('./../../images/activity_bottom_hl.png')
+            icon: require('../images/activity_bottom.png'),
+            iconActive: require('../images/activity_bottom_hl.png')
         },
         {
             title: 'Add Listings',
-            icon: require('./../../images/add_bottom.png'),
-            iconActive: require('./../../images/add_bottom_hl.png')
+            icon: require('../images/add_bottom.png'),
+            iconActive: require('../images/add_bottom_hl.png')
         },
         {
             title: 'Notifications',
-            icon: require('./../../images/notify_bottom.png'),
-            iconActive: require('./../../images/notify_bottom_hl.png')
+            icon: require('../images/notify_bottom.png'),
+            iconActive: require('../images/notify_bottom_hl.png')
         },
         {
             title: 'Others',
-            icon: require('./../../images/more_bottom.png'),
-            iconActive: require('./../../images/more_bottom_hl.png')
+            icon: require('../images/more_bottom.png'),
+            iconActive: require('../images/more_bottom_hl.png')
         }
     ],
     flights: [
@@ -43,7 +43,7 @@ export default {
             listItems: [
                 {
                     airportName: 'TAN SON NHAT AIRPORT',
-                    image: require('./../../images/flight_temp.png'),
+                    image: require('../images/flight_temp.png'),
                     loungeName: 'SILVERKRIS',
                     time: '02/17/2018 • 06:10 - 13:10',
                     guest: 15,
@@ -57,7 +57,7 @@ export default {
             listItems: [
                 {
                     airportName: 'AIRPORT NAME',
-                    image: require('./../../images/flight_temp.png'),
+                    image: require('../images/flight_temp.png'),
                     loungeName: 'LOUNGE NAME',
                     time: '02/17/2018 • 06:10 - 13:10',
                     guest: 15,
@@ -66,7 +66,7 @@ export default {
                 },
                 {
                     airportName: 'AIRPORT NAME',
-                    image: require('./../../images/flight_temp.png'),
+                    image: require('../images/flight_temp.png'),
                     loungeName: 'LOUNGE NAME',
                     time: '02/17/2018 • 06:10 - 13:10',
                     guest: 15,
@@ -75,7 +75,7 @@ export default {
                 },
                 {
                     airportName: 'AIRPORT NAME',
-                    image: require('./../../images/flight_temp.png'),
+                    image: require('../images/flight_temp.png'),
                     loungeName: 'LOUNGE NAME',
                     time: '02/17/2018 • 06:10 - 13:10',
                     guest: 15,
@@ -84,7 +84,7 @@ export default {
                 },
                 {
                     airportName: 'AIRPORT NAME',
-                    image: require('./../../images/flight_temp.png'),
+                    image: require('../images/flight_temp.png'),
                     loungeName: 'LOUNGE NAME',
                     time: '02/17/2018 • 06:10 - 13:10',
                     guest: 15,
@@ -93,7 +93,7 @@ export default {
                 },
                 {
                     airportName: 'AIRPORT NAME',
-                    image: require('./../../images/flight_temp.png'),
+                    image: require('../images/flight_temp.png'),
                     loungeName: 'LOUNGE NAME',
                     time: '02/17/2018 • 06:10 - 13:10',
                     guest: 15,
@@ -102,7 +102,7 @@ export default {
                 },
                 {
                     airportName: 'AIRPORT NAME',
-                    image: require('./../../images/flight_temp.png'),
+                    image: require('../images/flight_temp.png'),
                     loungeName: 'LOUNGE NAME',
                     time: '02/17/2018 • 06:10 - 13:10',
                     guest: 15,
@@ -111,7 +111,7 @@ export default {
                 },
                 {
                     airportName: 'AIRPORT NAME',
-                    image: require('./../../images/flight_temp.png'),
+                    image: require('../images/flight_temp.png'),
                     loungeName: 'LOUNGE NAME',
                     time: '02/17/2018 • 06:10 - 13:10',
                     guest: 15,
@@ -120,7 +120,7 @@ export default {
                 },
                 {
                     airportName: 'AIRPORT NAME',
-                    image: require('./../../images/flight_temp.png'),
+                    image: require('../images/flight_temp.png'),
                     loungeName: 'LOUNGE NAME',
                     time: '02/17/2018 • 06:10 - 13:10',
                     guest: 15,
