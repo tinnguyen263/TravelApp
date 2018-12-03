@@ -61,7 +61,7 @@ class LoginPage extends React.Component {
     }
 
     _submitLogin() {
-        this.props.onSubmitLogin(this.state.email, this.state.password);
+        this.props.login(this.state.email, this.state.password);
     }
 
     handleBackButton() {
@@ -138,9 +138,8 @@ class LoginPage extends React.Component {
 
 LoginPage.propTypes = {
     isLoading: PropTypes.bool,
-    // eslint-disable-next-line react/no-unused-prop-types
     isLoggedIn: PropTypes.bool.isRequired,
-    onSubmitLogin: PropTypes.func.isRequired,
+    login: PropTypes.func.isRequired,
     navigator: PropTypes.object
 };
 

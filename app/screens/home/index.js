@@ -1,6 +1,7 @@
 import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
 import HomePage from './home.component';
-import { logout } from './home.actions';
+import { logout } from "../../actions/authentication-actions";
 
 const mapStateToProps = state => ({
     listItems: state.flights,
@@ -10,8 +11,6 @@ const mapStateToProps = state => ({
     isLoading: state.app.isLoading
 });
 
-const mapDispatchToProps = dispatch => ({
-    onLogout: () => dispatch(logout())
-});
+const mapDispatchToProps = dispatch => bindActionCreators({ logout }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(HomePage);

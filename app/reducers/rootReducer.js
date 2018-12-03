@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
-import initialState from "./initialState";
-import * as types from "../constants/actionTypes";
+import initialState from "../initialState";
+import * as types from "../actions/actionTypes";
 
 
 const rootReducer = (state = initialState, action) => {
@@ -15,7 +15,7 @@ const rootReducer = (state = initialState, action) => {
                     token: action.payload.token
                 }
             });
-        case types.AUTH_LOGOUT:
+        case types.AUTH_DELETE_USER_DATA:
             return Object.assign({}, state, {
                 auth: {
                     ...state.auth,
